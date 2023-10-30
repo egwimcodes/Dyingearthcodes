@@ -1,0 +1,26 @@
+{% if messages %}
+<div class="msg">
+    <ul class="messages d-block p-0" type="none">
+    {% for message in messages %}
+    {% if message.tags %}
+    {% if message.tags == 'error' %}
+    <li class="alert alert-danger"> <i class="fas fa-check"></i>{{ message }}</li>
+    {% elif message.tags == 'warning' %}
+    <li class="alert alert-warning"><i class="fas fa-check"></i>{{ message }}</li>
+    {% elif message.tags == 'success' %}
+    <li class="alert alert-success"><i class="fas fa-check"></i>{{ message }}</li>
+    {% else %}
+    <li>{{ message }}</li>
+    {% endif %}
+    {% else %}
+    <li>{{ message }}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+</div>
+{% endif %}
+<script>
+    setTimeout(function() {
+        $(".msg").fadeOut(3000);
+    }, 3000);
+</script>

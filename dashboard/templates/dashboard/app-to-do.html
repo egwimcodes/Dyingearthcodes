@@ -1,0 +1,200 @@
+{% extends 'dashboard/index.html' %}
+{% load static %}
+{% block content %}
+
+<!--start page wrapper -->
+<div class="page-wrapper">
+    <div class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3"> Applications</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="{% url 'main' %}">
+                            <i class="bx bx-home-alt">
+                            </i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">To Do List</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!--end breadcrumb-->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="mb-0">To Do List</h4>
+                <hr/>
+
+                <div class="form-row ">
+                    <form action="{% url 'app-todo' %}" method="POST" class="row gy-3" id="todo-add-form">
+                        {% csrf_token %}
+                        <div class="col-md-9">
+                            <input id="todo-input" type="text" class="form-control" name="todo-text-add">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="datetime-local" class="form-control" name="todo-time-add"></input>
+                        </div>
+                        <div class="col-md-2 text-end d-grid">
+                            <button type="submit" class="btn btn-primary">Add todo</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-row mt-3">
+                    <div class="col-12">
+                        <div id="todo-container">
+                        {% include 'dashboard/messages.html' %}
+                            {% for todo in todos %}
+                            <div class="pb-3 todo-item" >
+                                <div class="input-group">
+                                    <form action="{% url 'app-todo' %}" method="post" class="input-group"
+                                          id="liform{{ todo.id }}">
+                                        {% csrf_token %}
+                                        <div class="mt-1 mx-2">
+                                            <a
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal{{todo.id}}"
+                                                    data-bs-whatever="@getbootstrap"
+                                            >
+                                                <svg
+                                                        viewBox="0 0 96 96"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="25"
+                                                        height="25">
+                                                    <path d="M78 60a5.997 5.997 0 0 0-6 6v18H12V24h18a6 6 0 0 0 0-12H6a5.997 5.997 0 0 0-6 6v72a5.997 5.997 0 0 0 6 6h72a5.997 5.997 0 0 0 6-6V66a5.997 5.997 0 0 0-6-6Z"
+                                                          fill="#fe9900" class="fill-000000"></path>
+                                                    <path d="m94.242 13.758-12-12a5.998 5.998 0 0 0-8.484 0l-36 36A5.996 5.996 0 0 0 36 42v12a5.997 5.997 0 0 0 6 6h12a5.996 5.996 0 0 0 4.242-1.758l36-36a5.998 5.998 0 0 0 0-8.484ZM51.516 48H48v-3.516l30-30L81.516 18Z"
+                                                          fill="#fe9900" class="fill-000000"></path>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="input-group-text">
+                                            <input type="checkbox"
+                                                   {% if todo.done %}
+                                                   checked
+                                                   {% endif %}
+                                                   aria-label="Checkbox for following text input"
+                                                   readonly
+                                                   disabled="disabled"
+                                            >
+                                        </div>
+                                        <input type="text" readonly class="form-control {% if todo.done %}
+                                                     text-decoration-line-through
+                                                   {% endif %}"
+                                               aria-label="Text input with checkbox" value="{{todo.text}}">
+
+                                        <div class="col-md-1"><input type="text" readonly class="form-control"
+                                                                     aria-label="Text input with checkbox"
+                                                                     value="{{ todo.time|date:'Y-m-d H:i:s A' }}"></div>
+                                        <button id=""
+                                                class="btn {% if todo.done %} btn-outline-danger bg-danger text-white {% else %} btn-outline-primary bg-primary text-white {% endif %}"
+                                                type="submit" onclick="" id="button-addon2" value="{{todo.id}}"
+                                                name="delete-todo">X
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <!-- ******* Modal Form for Todo update ********-->
+                            <div class="modal fade" id="exampleModal{{todo.id}}" tabindex="-1"
+                                 aria-labelledby="sensorModalLabel{{ todo.id }}"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center"
+                                                id="sensorModalLabel{{ sensor.id }}">
+                                                Updating <span
+                                                    class="text-primary">"Todo"</span></h5>
+                                            <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" id="form{{ todo.id }}" action="{% url 'app-todo' %}">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <input
+                                                            type="hidden"
+                                                            value="{{todo.id}}"
+                                                            class="form-control"
+                                                            id="todo-id"
+                                                            name="todo-id-update"
+                                                            readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="todo-text" class="col-form-label">Todo
+                                                        Contents: </label>
+                                                    <input
+                                                            type="text"
+                                                            value="{{todo.text}}"
+                                                            class="form-control"
+                                                            id="todo-text"
+                                                            name="text"
+                                                    />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="todo-done" class="col-form-label">
+                                                        Done ? Tick for Done</label>
+                                                    <div class="input-group-text">
+                                                        <input type="checkbox" id="todo-done"
+                                                               name="done"
+                                                               {% if todo.done %}
+                                                               checked
+                                                               {% endif %}
+                                                               aria-label="Checkbox for following text input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="todo-time" class="col-form-label">
+                                                        Set reminder ?</label>
+                                                    <input
+                                                            type="datetime-local"
+                                                            value="{{ todo.time|date:'Y-m-d H:i' }}"
+                                                            class="form-control"
+                                                            id="todo-time"
+                                                            name="time"
+                                                            data-container="body"
+                                                            data-toggle="popover"
+                                                            data-placement="left"
+                                                            data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                                    />
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" value="Submit"
+                                                    form="form{{ todo.id }}"
+                                                    class="btn btn-primary">
+                                                Update
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Form for Todo update end -->
+
+
+                            <script>
+                            </script>
+
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page wrapper end-->
+
+
+{% endblock %}

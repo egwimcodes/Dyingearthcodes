@@ -1,0 +1,54 @@
+[
+  // from here is the user data
+  {
+  "name": "janto",
+  "email": "janto@jtbnet.de",
+  "phone": "4917644721323",
+  "address": "konigswinter"
+},
+
+//  From here is the sensor data
+{
+  "sensor": {
+    "created": 2,
+    "updated": 2,
+    "token": "string",
+    "device_id": "string",
+    "counter": 2,
+    "payloads": {
+      "soilmoisture": {
+        "value": 2,
+        "mineral_content": {
+          "nitrogen": 2,
+          "phosphorus": 2,
+          "potassium": 2
+        }
+      },
+      "phlevel": {
+        "value": 2,
+        "mineral_content": {
+          "nitrogen": 2,
+          "phosphorus": 2,
+          "potassium": 2
+        }
+      },
+      "salinity": {
+        "value": 2,
+        "mineral_content": {
+          "nitrogen": 2,
+          "phosphorus": 2,
+          "potassium": 2
+        }
+      },
+      "airhumidity": {
+        "value": 2,
+        "mineral_content": {
+          "nitrogen": 2,
+          "phosphorus": 2,
+          "potassium": 2
+        }
+      }
+    }
+  }
+}
+]

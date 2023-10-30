@@ -1,0 +1,187 @@
+{% for sensor in sensor_list %}
+{% load static %}
+<div class="col-12  d-flex">
+    <div class="card radius-10 w-100">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div>
+                    <h6 class="mb-0">{{sensor.name}}</h6>
+                </div>
+                <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
+                </div>
+            </div>
+            <div class="chart-container" id="chart{{ sensor.id }}"></div>
+            <div class="row align-items-center py-2">
+                <div class="col-auto">
+                    <p class="mb-0">Soli Moisture</p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">100%</p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">Excellent</p>
+                </div>
+                <div class="col">
+                    <div class="progress radius-10 mb-0" style="height:6px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div><!--end row-->
+
+            <div class="row align-items-center py-2">
+                <div class="col-auto">
+                    <p class="mb-0">Ph Level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">50%</p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">Normal</p>
+                </div>
+                <div class="col">
+                    <div class="progress radius-10 mb-0" style="height:6px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 65%"></div>
+                    </div>
+                </div>
+            </div><!--end row-->
+
+            <div class="row align-items-center py-2">
+                <div class="col-auto">
+                    <p class="mb-0">Salinity &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">80%</p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">Good</p>
+                </div>
+
+                <div class="col">
+                    <div class="progress radius-10 mb-0" style="height:6px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center py-2">
+                <div class="col-auto">
+                    <p class="mb-0">Air Humidity&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">20%</p>
+                </div>
+                <div class="col-auto">
+                    <p class="mb-0">Bad</p>
+                </div>
+
+                <div class="col">
+                    <div class="progress radius-10 mb-0" style="height:6px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"></div>
+                    </div>
+                </div>
+            </div><!--end row-->
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        "use strict";
+
+        // Loop through each chart container and render the chart
+        $('.chart-container').each(function (index, element) {
+            var sensorId = element.id.replace('chart', ''); // Extract the sensor ID from the container ID
+
+            var options = {
+                chart: {
+                    height: 330,
+                    type: 'radialBar',
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -130,
+                        endAngle: 130,
+                        hollow: {
+                            margin: 0,
+                            size: '78%',
+                            //background: '#fff',
+                            image: undefined,
+                            imageOffsetX: 0,
+                            imageOffsetY: 0,
+                            position: 'front',
+                            dropShadow: {
+                                enabled: false,
+                                top: 3,
+                                left: 0,
+                                blur: 4,
+                                color: 'rgba(0, 169, 255, 0.25)',
+                                opacity: 0.65
+                            }
+                        },
+                        track: {
+                            background: '#dfecff',
+                            //strokeWidth: '67%',
+                            margin: 0, // margin is in pixels
+                            dropShadow: {
+                                enabled: false,
+                                top: -3,
+                                left: 0,
+                                blur: 4,
+                                color: 'rgba(0, 169, 255, 0.85)',
+                                opacity: 0.65
+                            }
+                        },
+                        dataLabels: {
+                            showOn: 'always',
+                            name: {
+                                offsetY: -25,
+                                show: true,
+                                color: '#6c757d',
+                                fontSize: '16px'
+                            },
+                            value: {
+                                formatter: function (val) {
+                                    return val + "%";
+                                },
+                                color: '#000',
+                                fontSize: '45px',
+                                show: true,
+                                offsetY: 10,
+                            }
+                        }
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#8e2de2'],
+                        inverseColors: false,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                colors: ["#fe9900"],
+                series: [100],
+                stroke: {
+                    lineCap: 'round',
+                    //dashArray: 4
+                },
+                labels: ['Dynamics Today'],
+            };
+            var chart = new ApexCharts(element, options);
+            chart.render();
+        });
+    });
+</script>
+
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+{% endfor %}
+

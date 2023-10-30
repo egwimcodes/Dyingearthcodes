@@ -1,0 +1,109 @@
+<div class="card d-none" id="user-Update-Profile-Component">
+    <div class="card-body">
+        <div class="d-flex justify-content-between text text-center">
+            <div></div>
+            <h3>Details</h3>
+            <a onclick="updateProfile()">
+                <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" width="24"
+                     height="24">
+                    <path d="M78 60a5.997 5.997 0 0 0-6 6v18H12V24h18a6 6 0 0 0 0-12H6a5.997 5.997 0 0 0-6 6v72a5.997 5.997 0 0 0 6 6h72a5.997 5.997 0 0 0 6-6V66a5.997 5.997 0 0 0-6-6Z"
+                          fill="#fe9900" class="fill-000000"></path>
+                    <path d="m94.242 13.758-12-12a5.998 5.998 0 0 0-8.484 0l-36 36A5.996 5.996 0 0 0 36 42v12a5.997 5.997 0 0 0 6 6h12a5.996 5.996 0 0 0 4.242-1.758l36-36a5.998 5.998 0 0 0 0-8.484ZM51.516 48H48v-3.516l30-30L81.516 18Z"
+                          fill="#fe9900" class="fill-000000"></path>
+                </svg>
+            </a>
+        </div>
+        <form  method="post" id="updateprofile" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mb-3 mt-3">
+                <div class="col-sm-2">
+                    <h6 class="mb-0">Username</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" name="username" value="{{ request.user.username}}" readonly/>
+                </div>
+            </div>
+            <div class="row mb-3 mt-3 ">
+                <div class="col-sm-2">
+                    <h6 class="mb-0">First Name</h6>
+                </div>
+                <div class="col-sm-3 text-secondary">
+                    <input type="text" class="form-control" name="first_name" value="{{ request.user.first_name}}" readonly/>
+                </div>
+                <div class="col-sm-2">
+                    <h6 class="mb-0 pt-lg-2 pt-2"><small>Last Name</small></h6>
+                </div>
+                <div class="col-sm-4 text-secondary">
+                    <input type="text" class="form-control" name="last_name" value="{{ request.user.last_name}}" readonly/>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" name="email" value="{{ request.user.email}}" readonly/>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" name="phone" value="{{ request.user.phone}}" readonly/>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" name="address" value="{{ request.user.address}}"
+                           readonly/>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <h6 class="mb-0">Country</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" name="country" value="{{ request.user.country}}"
+                           readonly/>
+                </div>
+            </div>
+            <div class="row mb-3 mt-3 ">
+                <div class="col-sm-2">
+                    <h6 class="mb-0">City</h6>
+                </div>
+                <div class="col-sm-4 text-secondary">
+                    <input type="text" class="form-control" name="city" value="{{ request.user.country}}" readonly/>
+                </div>
+                <div class="col-sm-2">
+                    <h6 class="mb-0 pt-lg-2 pt-2"><small>Zip Code</small></h6>
+                </div>
+                <div class="col-sm-3 text-secondary">
+                    <input type="text" class="form-control" name="zip_code" value="{{ request.user.zip_code}}" readonly/>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-2 mt-2">
+                    <h6 class="mb-0">Profile</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <input type="file" class="form-control" name="avatar"
+                           readonly/>
+                </div>
+            </div>
+            <div class="modal-footer" id="updateProfileFormButton">
+                <button type="button" onclick="closeUpdateProfile()" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancle
+                </button>
+                <button type="submit" id="submitupdateform" value="Submit" form="updateprofile" class="btn btn-primary">
+                    Update
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>

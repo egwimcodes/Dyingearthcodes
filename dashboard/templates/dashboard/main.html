@@ -1,0 +1,395 @@
+{% extends 'dashboard/index.html' %}
+{% load static %}
+{% block content %}
+<!--start page wrapper -->
+<div class="page-wrapper">
+    {% include 'dashboard/messages.html' %}
+    <div class="page-content">
+        <!--        sensor dark bg statics -->
+        <div class="dash-wrapper bg-dark">
+            <h1 class="sensor-chart-title">Sensors</h1>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 row-cols-xxl-5">
+                <div class="col border-end border-light-2">
+                    <div class="card bg-transparent shadow-none mb-0">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Soil Moisture</p>
+                            <h3 class="mb-3 text-white">70.02%</h3>
+                            <p class="font-13 text-white"><span class="text-success"><i class="lni lni-arrow-up"></i>2.1%</span>
+                                vs last 7 days</p>
+                            <div id="chart1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col border-end border-light-2">
+                    <div class="card bg-transparent shadow-none mb-0">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Ph Level</p>
+                            <h3 class="mb-3 text-white">80.08%</h3>
+                            <p class="font-13 text-white"><span class="text-success"><i class="lni lni-arrow-up"></i> 4.2% </span>
+                                last 7 days</p>
+                            <div id="chart2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col border-end border-light-2">
+                    <div class="card bg-transparent shadow-none mb-0">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Salinity</p>
+                            <h3 class="mb-3 text-white">50.02%</h3>
+                            <p class="font-13 text-white"><span class="text-danger"><i class="lni lni-arrow-down"></i> 3.6%</span>
+                                vs last 7 days</p>
+                            <div id="chart3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col border-end border-light-2">
+                    <div class="card bg-transparent shadow-none mb-0">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Air Humidity</p>
+                            <h3 class="mb-3 text-white">42.68%</h3>
+                            <p class="font-13 text-white"><span class="text-danger"><i class="lni lni-arrow-down"></i> 2.5%</span>
+                                vs last 7 days</p>
+                            <div id="chart4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-transparent shadow-none mb-0">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Chance of Rain</p>
+                            <h3 class="mb-3 text-white">100%</h3>
+                            <p class="font-13 text-white"><span class="text-success"><i class="lni lni-arrow-up"></i> 5.2%</span>
+                                vs last 7 days</p>
+                            <div id="chart5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end row-->
+        </div>
+
+        <div class="row row-cols-1 row-cols-xl-2">
+            <div class="col d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h6 class="mb-0">Soil Moisture</h6>
+                            </div>
+                            <div class="dropdown ms-auto">
+                                <button class="btn btn-white btn-sm radius-10 dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    This Month
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="#">This Week</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="chart6a"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h6 class="mb-0">Ph Level</h6>
+                            </div>
+                            <div class="dropdown ms-auto">
+                                <button class="btn btn-white btn-sm radius-10 dropdown-toggle" type="button"
+                                        id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    This Month
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="#">This Week</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="chart6b"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h6 class="mb-0">Salinity</h6>
+                            </div>
+                            <div class="dropdown ms-auto">
+                                <button class="btn btn-white btn-sm radius-10 dropdown-toggle" type="button"
+                                        id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    This Month
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="#">This Week</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="chart6c"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h6 class="mb-0">Air Humidity</h6>
+                            </div>
+                            <div class="dropdown ms-auto">
+                                <button class="btn btn-white btn-sm radius-10 dropdown-toggle" type="button"
+                                        id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    This Month
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="#">This Week</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="chart6d"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!--end row-->
+
+        <div class="row">
+            <div class="col-12 col-lg-8 d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h6 class="mb-0">Geographic</h6>
+                            </div>
+                            <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
+                            </div>
+                        </div>
+                        <div class="" id="geographic-map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h6 class="mb-0">Impressions By Country</h6>
+                            </div>
+                            <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-top-countries mb-3 p-3">
+
+                        <div class="row mb-4">
+                            <div class="col-2">
+                                <img src="{% static 'assets/images/icons/united-states.png' %}" width="42" alt="">
+                            </div>
+                            <div class="col">
+                                <p class="mb-2">United States <strong class="float-end">445,85</strong></p>
+                                <div class="progress radius-10" style="height:6px;">
+                                    <div class="progress-bar bg-gradient-blues" role="progressbar"
+                                         style="width: 86%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-2">
+                                <img src="{% static 'assets/images/icons/germany.png' %}" width="42" alt="">
+                            </div>
+                            <div class="col">
+                                <p class="mb-2">Germany <strong class="float-end">683,46</strong></p>
+                                <div class="progress radius-10" style="height:6px;">
+                                    <div class="progress-bar bg-gradient-cosmic" role="progressbar"
+                                         style="width: 66%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-2">
+                                <img src="{% static 'assets/images/icons/canada.png' %}" width="42" alt="">
+                            </div>
+                            <div class="col">
+                                <p class="mb-2">Canada <strong class="float-end">982,43</strong></p>
+                                <div class="progress radius-10" style="height:6px;">
+                                    <div class="progress-bar bg-gradient-burning" role="progressbar"
+                                         style="width: 56%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-2">
+                                <img src="{% static 'assets/images/icons/india.png' %}" width="42" alt="">
+                            </div>
+                            <div class="col">
+                                <p class="mb-2">India <strong class="float-end">852,35</strong></p>
+                                <div class="progress radius-10" style="height:6px;">
+                                    <div class="progress-bar bg-gradient-lush" role="progressbar"
+                                         style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-2">
+                                <img src="{% static 'assets/images/icons/netherlands.png' %}" width="42" alt="">
+                            </div>
+                            <div class="col">
+                                <p class="mb-2">Netherlands <strong class="float-end">785,24</strong></p>
+                                <div class="progress radius-10" style="height:6px;">
+                                    <div class="progress-bar bg-gradient-kyoto" role="progressbar"
+                                         style="width: 38%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-0">
+                            <div class="col-2">
+                                <img src="{% static 'assets/images/icons/malaysia.png' %}" width="42" alt="">
+                            </div>
+                            <div class="col">
+                                <p class="mb-2">Malaysia <strong class="float-end">387,56</strong></p>
+                                <div class="progress radius-10" style="height:6px;">
+                                    <div class="progress-bar bg-gradient-moonlit" role="progressbar"
+                                         style="width: 28%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div><!--end row-->
+
+        <div class="row">
+
+            <!-- Goal statistics start -->
+            <div class="col-12  d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h6 class="mb-0">Goal Statistics</h6>
+                            </div>
+                            <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
+                            </div>
+                        </div>
+                        <div id="chart11"></div>
+                        <div class="row align-items-center py-2">
+                            <div class="col-auto">
+                                <p class="mb-0">Soli Moisture</p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">100%</p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">Excellent</p>
+                            </div>
+                            <div class="col">
+                                <div class="progress radius-10 mb-0" style="height:6px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+
+                        <div class="row align-items-center py-2">
+                            <div class="col-auto">
+                                <p class="mb-0">Ph Level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">50%</p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">Normal</p>
+                            </div>
+                            <div class="col">
+                                <div class="progress radius-10 mb-0" style="height:6px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+
+                        <div class="row align-items-center py-2">
+                            <div class="col-auto">
+                                <p class="mb-0">Salinity &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">80%</p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">Good</p>
+                            </div>
+
+                            <div class="col">
+                                <div class="progress radius-10 mb-0" style="height:6px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-2">
+                            <div class="col-auto">
+                                <p class="mb-0">Air Humidity&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">20%</p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="mb-0">Bad</p>
+                            </div>
+
+                            <div class="col">
+                                <div class="progress radius-10 mb-0" style="height:6px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"></div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                    </div>
+                </div>
+            </div>
+            <!-- Goal statistics end -->
+
+            <div class="col-12 col-lg-4 d-flex">
+                <div class="card radius-10 p-0 w-100 p-3">
+                    <div class="card radius-10 shadow-none bg-transparent border">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                                <div id="chart12"></div>
+                                <div class="">
+                                    <p class="mb-0 d-flex align-items-center"><i
+                                            class='bx bx-male text-danger fs-4'></i><span class="mx-2">Male</span><span>65%</span>
+                                    </p>
+                                    <p class="mb-0 d-flex align-items-center"><i
+                                            class='bx bx-female text-primary fs-4'></i><span
+                                            class="mx-2">Male</span><span>35%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div><!--end row-->
+
+    <!--end row-->
+</div>
+<script>
+        setTimeout(function() {
+            $('#oneTimeSucess').hide();
+        }, 5000);
+</script>
+
+</div>
+<!--end page wrapper -->
+{% endblock %}

@@ -1,56 +1,56 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
-from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth import authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import CreateUserForm, SensorListForm, UpdateUserForm, UpdateTodoForm
+from .forms import CreateUserForm,DeleteAccountForm, CustomPasswordChangeForm , SensorListForm, UpdateUserForm, UpdateTodoForm
 from .models import User, Sensor, TodoApp, SensorQr
 from datetime import datetime
 from django.utils import timezone
 import uuid
 from django.db import IntegrityError
+from django.contrib.auth.views import PasswordChangeView
 
+
+# cbv
+from django.views.generic import CreateView, FormView, TemplateView, DeleteView, UpdateView, View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect("main")
-    else:
-        if request.method == "POST":
-            username = request.POST.get("username")
-            password = request.POST.get("password")
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, "Login successful")
-                return redirect("main")
-            else:
-                messages.error(request, "Invalid email or password")
-    return render(request, "dashboard/authentication-signin-with-header-footer.html")
+class UserCreationView(CreateView):
+    template_name = "dashboard/registration/register.html"
+    form_class = CreateUserForm
+    success_url = reverse_lazy('login')
 
 
-def logoutPage(request):
-    logout(request)
-    messages.success(request, "Logout successful")
-    return redirect("login-page")
 
+class SettingsView(LoginRequiredMixin, UpdateView):
+    model = User  # Replace with your user model
+    form_class = UpdateUserForm  # Replace with your user update form
+    template_name = "dashboard/user_update_form.html"
 
-def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect("main")
-    else:
-        form = CreateUserForm()
-        if request.method == "POST":
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, "Account created successfully")
-                return redirect("login-page")
+    def get_object(self, queryset=None):
+        # Retrieve the user based on the 'user_id' parameter from the URL
+        return User.objects.get(id=self.kwargs['user_id'])
+    
+    def get_success_url(self):
+        return reverse('settings', kwargs={'user_id': self.request.user.id})
+    
+    
+    
+    
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = CustomPasswordChangeForm 
+ 
+        
+class AccountDeleteView(DeleteView, LoginRequiredMixin):
+    model = User
+    template_name = "dashboard/registration/account_delete_done.html"
+    success_url = reverse_lazy('logout')
 
-    context = {"form": form}
-    return render(request, "dashboard/authentication-signup-with-header-footer.html", context)
-
+    
+    
 
 @login_required(login_url="login-page")
 def userProfile(request, pk):
@@ -89,7 +89,7 @@ def userProfile(request, pk):
 
 
 @login_required(login_url="login-page")
-def settingsPage(request):
+def settingsView(request):
     user = get_object_or_404(User, username=request.user.username)
     sensor_list = user.sensor_set.all().order_by("-id")
 
@@ -145,10 +145,10 @@ def settingsPage(request):
                         sensor_qr.sensor = auto_sensor
                         sensor_qr.save()
                         messages.success(request, "Sensor added successfully, Please rename as soon as possible")
-                        return redirect(reverse('profile-settings'))
+                        return redirect(reverse('settings'))
                 else:
                     messages.error(request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
-                    return redirect(reverse('profile-settings'))
+                    return redirect(reverse('settings'))
         else:
             pass
 
@@ -164,8 +164,83 @@ def settingsPage(request):
     }
     return render(request, "dashboard/settings.html", context)
 
+def sensorAddView(request):
+    
+    user = get_object_or_404(User, username=request.user.username)
+    sensor_list = user.sensor_set.all().order_by("-id")
 
-@login_required(login_url="login-page")
+    # this block generates qr code and check for duplicate in the database when the qrcode is exhausted
+    def sensor_code_generator(unregistered_sensors):
+        for i in range(unregistered_sensors):
+            uuid_code = uuid.uuid4()
+            main_uuid = str(uuid_code).upper().replace('-', '')[:20]
+            formatted = "DE-" + '-'.join([main_uuid[i:i + 5] for i in range(0, len(main_uuid), 5)])
+            try:
+                # Try creating the new sensor entry
+                SensorQr.objects.create(sensor_qr=formatted)
+            except IntegrityError:
+                # If there's a duplicate (IntegrityError), delete one of them and then create the new entry
+                duplicate_sensor = SensorQr.objects.filter(sensor_qr=formatted).first()
+                if duplicate_sensor:
+                    duplicate_sensor.delete()
+                SensorQr.objects.create(sensor_qr=formatted)
+
+    if not SensorQr.objects.all():
+        for qr in SensorQr.objects.all().values():
+            if qr['sensor_id'] == None:
+                pass
+        sensor_code_generator(100)
+
+    try:
+        form = SensorListForm(request.POST)
+        if form.is_valid():
+            id = request.POST.get('id')
+            sensor_id = request.POST.get("sensor_id")
+            sensor = get_object_or_404(Sensor, id=sensor_id, user=user)
+            form = SensorListForm(request.POST, instance=sensor)
+            if form.is_valid():
+                form.save()
+    except:
+        if request.method == 'POST':
+            if request.POST.get("add-sensor"):
+                adding_sensor = request.POST.get("add-sensor")
+                matching_token = None
+
+                for token in SensorQr.objects.all().values():
+                    if token['sensor_qr'] == adding_sensor and token['sensor_id'] == None:
+                        matching_token = token
+                        matching_token_id = token['id']
+                        break
+
+                if matching_token:
+                    adding_to_db = str(matching_token)
+                    if adding_to_db:
+                        auto_sensor = Sensor(name=f"New Sensor {matching_token_id}", user=user, location="No Location Added")
+                        auto_sensor.save()
+                        sensor_qr = SensorQr.objects.get(id=matching_token_id)
+                        sensor_qr.sensor = auto_sensor
+                        sensor_qr.save()
+                        messages.success(request, "Sensor added successfully, Please rename as soon as possible")
+                        return redirect(reverse('settings'))
+                else:
+                    messages.error(request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
+                    return redirect(reverse('settings'))
+        else:
+            pass
+
+
+
+    else:
+        form = SensorListForm()
+
+    context = {
+        "sensor_list": sensor_list,
+        "user": user,
+        "form": form,
+    }
+    return render(request, "dashboard/add-sensor.html", context)
+
+@login_required(login_url="login")
 def mainPage(request):
     return render(request, "dashboard/main.html")
 

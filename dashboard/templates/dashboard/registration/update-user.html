@@ -1,0 +1,131 @@
+{% extends 'dashboard/settings.html'%}
+{% block extra_content %}
+<div class="card">
+    <div class="card-header">
+      <div class="card-actions float-right">
+        <div class="dropdown show">
+          <a
+            href="#"
+            data-toggle="dropdown"
+            data-display="static"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-more-horizontal align-middle"
+            >
+              <circle cx="12" cy="12" r="1"></circle>
+              <circle cx="19" cy="12" r="1"></circle>
+              <circle cx="5" cy="12" r="1"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <h1>Hmm</h1>
+      <h5 class="card-title mb-0">
+        {{ request.user.username }} info
+      </h5>
+    </div>
+    <div class="card-body">
+      <form  method="post" id="updateprofile" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row mb-3 mt-3">
+              <div class="col-sm-2">
+                  <h6 class="mb-0">Username</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" name="username" value="{{ request.user.username}}" />
+              </div>
+          </div>
+          <div class="row mb-3 mt-3 ">
+              <div class="col-sm-2">
+                  <h6 class="mb-0">First Name</h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                  <input type="text" class="form-control" name="first_name" value="{{ request.user.first_name}}" />
+              </div>
+              <div class="col-sm-2">
+                  <h6 class="mb-0 pt-lg-2 pt-2"><small>Last Name</small></h6>
+              </div>
+              <div class="col-sm-4 text-secondary">
+                  <input type="text" class="form-control" name="last_name" value="{{ request.user.last_name}}" />
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-2">
+                  <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" name="email" value="{{ request.user.email}}" />
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-2">
+                  <h6 class="mb-0">Phone</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" name="phone" value="{{ request.user.phone}}" />
+              </div>
+          </div>
+
+          <div class="row mb-3">
+              <div class="col-sm-2">
+                  <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" name="address" value="{{ request.user.address}}"
+                         />
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-2">
+                  <h6 class="mb-0">Country</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" name="country" value="{{ request.user.country}}"
+                         />
+              </div>
+          </div>
+          <div class="row mb-3 mt-3 ">
+              <div class="col-sm-2">
+                  <h6 class="mb-0">City</h6>
+              </div>
+              <div class="col-sm-4 text-secondary">
+                  <input type="text" class="form-control" name="city" value="{{ request.user.country}}" />
+              </div>
+              <div class="col-sm-2">
+                  <h6 class="mb-0 pt-lg-2 pt-2"><small>Zip Code</small></h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                  <input type="text" class="form-control" name="zip_code" value="{{ request.user.zip_code}}" />
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-sm-2 mt-2">
+                  <h6 class="mb-0">Profile</h6>
+              </div>
+              <div class="col-sm-9 text-secondary fs-5 text-center">
+                  <label for="avatar" class="custom-file-upload">
+                      <input type="file" class="form-control  " name="avatar" id="avatar" style="display: none;" />
+                      <i class="bx bx-upload" onclick="document.getElementById('avatar').click()" style="color: #fe9900; font-size:27px;"></i> Upload Avatar
+                  </label>
+              </div>
+              
+              
+          </div>
+          <div class="modal-footer" id="updateProfileFormButton">
+              <button type="submit" id="submitupdateform" value="Submit" form="updateprofile" class="btn btn-primary">
+                  Update
+              </button>
+          </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

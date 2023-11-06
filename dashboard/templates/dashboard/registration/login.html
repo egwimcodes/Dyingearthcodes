@@ -1,0 +1,65 @@
+{% extends 'dashboard/registration/main-registration.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="card">
+    <div class="card-body">
+<div class="p-4 rounded">
+    <div class="text-center">
+        <h3 class="">Sign in</h3>
+        <p>Don't have an account yet? <a href="{% url 'register'%}">Sign up here</a>
+        </p>
+    </div>
+    <div class="d-grid">
+        <a
+                class="btn my-4 shadow-sm btn-white"
+                href="">
+            <span
+                    class="d-flex justify-content-center align-items-center">
+                <img
+                        class="me-2" src="{% static 'assets/images/icons/search.svg' %}"
+                        width="16"
+                        alt="Image Description">
+                <span>Sign in with Google</span>
+            </span>
+        </a>
+
+        <a
+                href=""
+                class="btn btn-facebook">
+            <i class="bx bxl-facebook"></i>
+            Sign in with Facebook</a>
+    </div>
+
+    <div class="login-separater text-center mb-4"><span>OR SIGN IN WITH Username</span>
+        <hr/>
+    </div>
+     {% include 'dashboard/messages.html' %}
+    <div class="form-body">
+        <form class="row" method="POST" action="">
+            {% csrf_token %}
+           {{form|crispy}}
+            <div class="col-md-6">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox"
+                           id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Remember
+                        Me</label>
+                </div>
+            </div>
+            <div class="col-md-6 text-end"><a href="authentication-forgot-password.html">Forgot
+                Password ?</a>
+            </div>
+            <div class="col-12">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary rounded-pill"><i
+                            class="bx bxs-lock-open"></i>Sign in
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+{% endblock content %}

@@ -6,10 +6,11 @@ from django.contrib.auth.models import AbstractUser
 # ####### Sensor User model start ########labdooadmin
 class User(AbstractUser):
     email = models.EmailField(unique=True, null=True)
-    country = models.CharField(max_length=50, null=True, blank=True)
+    
     phone = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
-    city = models.CharField(max_length=50, null=True, blank=True)
+    country = models.CharField(max_length=100, null=True , blank=True)
+    city = models.CharField(max_length=100, null=True , blank=True) 
     zip_code = models.CharField(max_length=10, null=True, blank=True)
     avatar = models.ImageField(null=True, default='avatar.png')
 

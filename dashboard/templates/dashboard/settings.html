@@ -1,125 +1,114 @@
-{% extends 'dashboard/index.html' %}
-{% load static %}
-{% block content %}
-<div class="page-wrapper ">
-    <div class="page-content">
-        <div class="container">
-            <div class="main-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                {% include 'dashboard/messages.html' %}
-                                <!-- ******************   profile detail start  ********************  -->
-                                <div class="d-flex flex-column align-items-center text-center">
-                                    <!-- ******************   sensor add form  ********************  -->
+{% extends 'dashboard/index.html' %} {% load static %} {% block content %}
+<!--start page wrapper -->
 
-                                    <div class="row my-5">
-                                        <div id="logo" class="text-center">
-                                            <h1>Register Sensor Qr Code</h1>
-                                        </div>
-                                        <form role="form" id="form-buscar" action="" method="POST">
-                                            {% csrf_token %}
-                                                <div class="input-group">
-                                                  <div class="col">
-                                                        <div class="my-3 text-center">
-                                                        <input id="1" class="form-control mt-3 mx-auto" type="text"
-                                                               name="add-sensor" placeholder="DE - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX"
-                                                               style="font-size: 20px" required/>
-                                                    </div>
-                                                        <span class="input-group-btn">
-                                                       <button class="btn btn-default btn-primary p-3"  type="submit">
-                                                         <i class='bx bx-plus'></i> Add New Sensor
-                                                     </button>
-                                                 </span>
-
-                                                  </div>
-                                                </div>
-                                        </form>
-                                    </div>
-
-
-
-
-                                </div>
-                            </div>
-                            <!-- ******************   profile details end ********************  -->
-
-                            <hr class="my-4"/>
-                            <div class="container my-5">
-                                <ul class="list-group list-group-flush">
-
-                                <!-- ******************  profile sensor header start ********************  -->
-                                <div class="d-flex justify-content-center text text-center">
-                                    <h3>Sensors</h3>
-                                </div>
-                                <!-- ******************   profile sensor header end ********************  -->
-
-                                <!-- ******************   Big sensor profile icon  start********************  -->
-                                <div class="d-flex justify-content-between text text-center align-items-center mx-5 my-1">
-                                    <svg viewBox="0 0 96 96" xml:space="preserve" width="45" height="45"
-                                         xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 96 96"><path d="M18 84h2v2h-2zM6 82h2v2H6zM30 79h2v2h-2zM63 79h2v2h-2zM78 81h2v2h-2zM86 85h2v2h-2z" fill="#fe9900" class="fill-000000"></path>
-                                        <path d="m94 91-18.739-1.972-2.707 1.805a.958.958 0 0 1-.107.062l-2 1-.895-1.789 1.944-.972 1.616-1.077L69 86h-6.586l-3.707 3.707A.997.997 0 0 1 58 90h-2v-2h1.586l3.073-3.073L57 82h-7v-8.025C67.209 73.445 81 59.338 81 42c-17.338 0-31.445 13.791-31.975 31h-1.051C47.445 55.791 33.338 42 16 42c0 17.338 13.791 31.445 31 31.975V82h-8l-3.499 2.799 2.053 1.369c.145.097.262.229.34.385L38.618 88H42v2h-4c-.379 0-.725-.214-.895-.553l-.881-1.763L33.697 86H27l-5.091 2.182L24.6 90.2l-1.2 1.6-3.69-2.768L2 91l-.03 3H94v-3zM77.293 44.293l1.414 1.414-25 25-1.414-1.414 25-25zm-32.984 26.43-23-22 1.383-1.445 23 22-1.383 1.445z"
-                                              fill="#fe9900" class="fill-000000"></path>
-                                        <path d="M33 11.899V19a1 1 0 0 0 .4.8l7.6 5.7V48h2V25a1 1 0 0 0-.4-.8L35 18.5v-6.601a5 5 0 1 0-2 0zM34 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM56 24.535l5.555-3.703c.278-.186.445-.498.445-.832v-8.101a5 5 0 1 0-2 0v7.566l-5.555 3.703A1.001 1.001 0 0 0 54 24v24h2V24.535zM61 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM70 24.899V29h-8a1 1 0 0 0-1 1v12h2V31h8a1 1 0 0 0 1-1v-5.101a5 5 0 1 0-2 0zM71 19a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM24 23.899V30a1 1 0 0 0 1 1h8v10h2V30a1 1 0 0 0-1-1h-8v-5.101a5 5 0 1 0-2 0zM25 18a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM47.5 20.899V51h2V20.899a5 5 0 1 0-2 0zm1-5.899a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                              fill="#fe9900" class="fill-000000"></path></svg>
-
-                                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" width="24"
-                                         height="24">
-                                        <path d="M10 20S3 10.87 3 7a7 7 0 1 1 14 0c0 3.87-7 13-7 13zm0-11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
-                                              fill="#fe9900" class="fill-000000"></path>
-                                    </svg>
-                                </div>
-                                <!-- ******************   Big sensor profile icon  end********************  -->
-
-                                <!-- ******************  Sensors Listing start ********************  -->
-                                    {% include 'dashboard/sensors.html' %}
-
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-center" id="exampleModalLabel">Sensor
-                                                    Update</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="POST" action="" id="sens-form">
-                                                    {% for field in form %}
-                                                    {% csrf_token %}
-                                                    <div class="mb-3">
-                                                        <label class="col-form-label">{{field.label}}</label>
-                                                        {{field}}
-                                                    </div>
-                                                    {% endfor %}
-
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close
-                                                </button>
-                                                <button type="submit" form="sens-form" class="btn btn-primary">
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- ******************  Sensors Listing end ********************  -->
-                            </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
+<div class="page-wrapper">
+  <div class="page-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="breadcrumb-title pe-3">User Settings</div>
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item">
+              <a href="{% url 'dashboard' %}"><i class="bx bx-home-alt"></i></a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              User Settings
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div class="ms-auto">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary">Settings</button>
+          <button
+            type="button"
+            class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
+            data-bs-toggle="dropdown"
+          >
+            <span class="visually-hidden">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+            <a class="dropdown-item" onclick="updateProfile()" id="update-info"
+              >Update Info</a
+            >
+            <a class="dropdown-item" href="javascript:;">Sensor</a>
+            <a class="dropdown-item" href="javascript:;">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript:;">Separated link</a>
+          </div>
         </div>
+      </div>
     </div>
+    <!--end breadcrumb-->
+    <div class="container">
+      <div class="main-body">
+        <div class="row">
+          <div class="container p-0">
+            <div class="row">
+              <div class="col-md-5 col-xl-4">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">Profile Settings</h5>
+                  </div>
+
+                  <div class="list-group list-group-flush" role="tablist">
+                    <a
+                      class="list-group-item list-group-item-action"
+                      data-toggle="list"
+                      href="{% url 'settings' request.user.id %}"
+                      role="tab"
+                      id='account-btn'
+                    >
+                      Account
+                    </a>
+
+                    <a
+                      class="list-group-item list-group-item-action {% if request.path == '/accounts/password_change/' %} active {% endif %}"
+                      data-toggle="list"
+                      href="{% url 'password_change'%}"
+                      role="tab"
+                    >
+                      Password
+                    </a>
+                    <a
+                      class="list-group-item list-group-item-action {% if request.path == '/accounts/delete/' %} active {% endif %}"
+                      data-toggle="list"
+                      href="{% url 'account_delete' request.user.id %}"
+                      role="tab"
+                      id='account-delete-btn'
+                    >
+                      Delete account
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-7 col-xl-8">
+                <div class="tab-content">
+                  <div
+                    class="tab-pane fade show active"
+                    id="account"
+                    role="tabpanel"
+                  >
+                    {% block extra_content %} {% endblock extra_content %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+<script type="text/javascript">
+  if ("{{request.path}}" == '/settings/{{request.user.id}}/'){
+    $('#account-btn').addClass('active')
+  }
+  if ("{{request.path}}" == '/accounts/{{request.user.id}}/delete/'){
+    $('#account-delete-btn').addClass('active')
+  }
+</script>
+<!--end page wrapper -->
 {% endblock %}

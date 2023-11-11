@@ -29,8 +29,6 @@ class CreateUserForm(UserCreationForm):
             self.add_error('username', 'Username must contain only letters and numbers.')
         if User.objects.filter(email=email).exists():
             self.add_error('email', 'This email is already in use.')
-        if password1 != password2:
-            self.add_error('password2', f"both password didn't match{password1} {password2}") 
         if country and not country.isalnum():
             self.add_error('country', 'Country must contain only letters')
             

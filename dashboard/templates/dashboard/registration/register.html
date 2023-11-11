@@ -1,4 +1,6 @@
 {% extends 'dashboard/registration/main-registration.html'%} {% load static %}
+{% load account socialaccount %}
+{% providers_media_js %}
 {% load crispy_forms_tags %} {% block content %}
 <div class="card" style='margin-top: 200px;'>
   <div class="card-body">
@@ -11,7 +13,7 @@
         </p>
       </div>
       <div class="d-grid">
-        <a class="btn my-4 shadow-sm btn-white" href="">
+        <a class="btn my-4 shadow-sm btn-white" href="{% provider_login_url 'google' next='/dashboard/' %}">
           <span class="d-flex justify-content-center align-items-center">
             <img
               class="me-2"
@@ -22,7 +24,7 @@
             <span>Sign Up with Google</span>
           </span>
         </a>
-        <a href="" class="btn btn-facebook"
+        <a href="{% provider_login_url "facebook" %}" class="btn btn-facebook"
           ><i class="bx bxl-facebook"></i>Sign Up with Facebook</a
         >
       </div>
@@ -71,8 +73,8 @@
             </div>
             <div class="col-12 mb-2">
               <label for="comfirm-password" class="form-label">Comfirm Password</label>
-              <div class="input-group" id="show_hide_password2">
-                <div class="col-11" id="password2">{{form.password2}}</div>
+              <div class="input-group" id="show_hide_password">
+                <div class="col-11" id="password">{{form.password2}}</div>
                 <a href="" class="input-group-text bg-transparent col-1"
                   ><i class="bx bx-hide"></i
                 ></a>

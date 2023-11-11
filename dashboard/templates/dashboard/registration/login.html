@@ -1,5 +1,7 @@
 {% extends 'dashboard/registration/main-registration.html'%}
 {% load static %}
+{% load account socialaccount %}
+{% providers_media_js %}
 {% load crispy_forms_tags %}
 {% block content%}
 <div class="card">
@@ -13,7 +15,7 @@
     <div class="d-grid">
         <a
                 class="btn my-4 shadow-sm btn-white"
-                href="">
+                href="{% provider_login_url 'google' next='/dashboard/' %}">
             <span
                     class="d-flex justify-content-center align-items-center">
                 <img
@@ -25,7 +27,7 @@
         </a>
 
         <a
-                href=""
+                href="{% provider_login_url "facebook" %}"
                 class="btn btn-facebook">
             <i class="bx bxl-facebook"></i>
             Sign in with Facebook</a>

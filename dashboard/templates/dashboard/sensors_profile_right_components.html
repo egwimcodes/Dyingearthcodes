@@ -1,0 +1,158 @@
+{% for sensor in sensor_list %}
+  {% load static %}
+  <div class="row">
+    <div class="card pt-4">
+      <div class="text-center">
+        <h3 class='text-primary text-underlined' style="text-decoration: underline;">
+          {{ sensor.name }}
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card radius-10 w-100">
+            <div class="card-body">
+              <div class="chart-container" id="chart_soil_moisture_{{ forloop.counter }}"></div>
+              <div class="d-flex flex-column align-items-center">
+                <h6 class="mb-0">Moisture</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="card radius-10 w-100">
+            <div class="card-body">
+              <div class="chart-container" id="chart_temperature_{{ forloop.counter }}"></div>
+              <div class="d-flex flex-column align-items-center">
+                <h6 class="mb-0">Temperature</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="card radius-10 w-100">
+            <div class="card-body">
+              <div class="chart-container" id="chart_humidity_{{ forloop.counter }}"></div>
+              <div class="d-flex flex-column align-items-center">
+                <h6 class="mb-0">Humidity</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        function initializeChart(containerId, chartValues) {
+
+            var fontSize = window.innerWidth < 768 ? '20px' : '30px';
+          var options = {
+            chart: {
+              height: '91%',
+              type: 'radialBar',
+              toolbar: {
+                show: false
+              }
+            },
+            responsive: [
+              {
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    height: 'auto'
+                  }
+                }
+              }
+            ],
+            plotOptions: {
+              radialBar: {
+                startAngle: -130,
+                endAngle: 130,
+                hollow: {
+                  margin: 0,
+                  size: '78%',
+                  image: undefined,
+                  imageOffsetX: 0,
+                  imageOffsetY: 0,
+                  position: 'front',
+                  dropShadow: {
+                    enabled: false,
+                    top: 3,
+                    left: 0,
+                    blur: 4,
+                    color: 'rgba(0, 169, 255, 0.25)',
+                    opacity: 0.65
+                  }
+                },
+                track: {
+                  background: '#dfecff',
+                  margin: 0,
+                  dropShadow: {
+                    enabled: false,
+                    top: -3,
+                    left: 0,
+                    blur: 4,
+                    color: 'rgba(0, 169, 255, 0.85)',
+                    opacity: 0.65
+                  }
+                },
+                dataLabels: {
+                  showOn: 'always',
+                  name: {
+                    offsetY: -25,
+                    show: true,
+                    color: '#6c757d',
+                    fontSize: '16px'
+                  },
+                  value: {
+                    formatter: function (val) {
+                      return val + "%";
+                    },
+                    color: '#000',
+                    fontSize: fontSize,
+                    show: true,
+                    offsetY: 10,
+                  }
+                }
+              }
+            },
+            fill: {
+              type: 'gradient',
+              gradient: {
+                shade: 'dark',
+                type: 'horizontal',
+                shadeIntensity: 0.5,
+                gradientToColors: ['#8e2de2'],
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100]
+              }
+            },
+            colors: ["#fe9900"],
+            series: [chartValues],  // Update series with the actual value
+            stroke: {
+              lineCap: 'round',
+            },
+            labels: [''],
+          };
+
+          var chart = new ApexCharts(document.querySelector("#" + containerId), options);
+          chart.render();
+        }
+
+        var chartValues = [
+          "{{ sensor.payload_set.soil_moisture }}",
+          "{{ sensor.payload_set.temperature }}",
+          "{{ sensor.payload_set.humidity }}"
+        ];
+
+        initializeChart("chart_soil_moisture_{{ forloop.counter }}", chartValues[0]);
+        initializeChart("chart_temperature_{{ forloop.counter }}", chartValues[1]);
+        initializeChart("chart_humidity_{{ forloop.counter }}", chartValues[2]);
+      });
+    </script>
+  </div>
+{% endfor %}

@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import UserCreationView, AccountDeleteView, SettingsView, CustomPasswordChangeView
+from .views import UserCreationView, AccountDeleteView, SettingsView, CustomPasswordChangeView, UserSensorsView
 from dyingearthcode.views import homePage
 
 urlpatterns = [
@@ -10,7 +10,7 @@ urlpatterns = [
     path("dashboard/", views.mainPage, name="dashboard"),
     path('accounts/<pk>/delete/', AccountDeleteView.as_view(), name="account_delete"),
     path("register/", UserCreationView.as_view(), name="register"),
-    path("profile/<str:pk>/", views.userProfile, name="user-profile"),
+    path("sensors/<str:pk>/", UserSensorsView.as_view(), name="sensors"),
     path("settings/<int:user_id>/", SettingsView.as_view(), name="settings"),
     path('sensor-add/', views.sensorAddView, name='add-sensor'),
 

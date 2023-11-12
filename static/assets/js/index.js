@@ -1128,6 +1128,97 @@ chart.render();
 
 
 
+    var options = {
+        chart: {
+            height: 330,
+            type: 'radialBar',
+            toolbar: {
+                show: false
+            }
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -130,
+                endAngle: 130,
+                hollow: {
+                    margin: 0,
+                    size: '78%',
+                    //background: '#fff',
+                    image: undefined,
+                    imageOffsetX: 0,
+                    imageOffsetY: 0,
+                    position: 'front',
+                    dropShadow: {
+                        enabled: false,
+                        top: 3,
+                        left: 0,
+                        blur: 4,
+                        color: 'rgba(0, 169, 255, 0.25)',
+                        opacity: 0.65
+                    }
+                },
+                track: {
+                    background: '#dfecff',
+                    //strokeWidth: '67%',
+                    margin: 0, // margin is in pixels
+                    dropShadow: {
+                        enabled: false,
+                        top: -3,
+                        left: 0,
+                        blur: 4,
+                        color: 'rgba(0, 169, 255, 0.85)',
+                        opacity: 0.65
+                    }
+                },
+                dataLabels: {
+                    showOn: 'always',
+                    name: {
+                        offsetY: -25,
+                        show: true,
+                        color: '#6c757d',
+                        fontSize: '16px'
+                    },
+                    value: {
+                        formatter: function (val) {
+                            return val + "%";
+                        },
+                        color: '#000',
+                        fontSize: '45px',
+                        show: true,
+                        offsetY: 10,
+                    }
+                }
+            }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'dark',
+                type: 'horizontal',
+                shadeIntensity: 0.5,
+                gradientToColors: ['#8e2de2'],
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100]
+            }
+        },
+        colors: ["#4a00e0"],
+        series: [84],
+        stroke: {
+            lineCap: 'round',
+            //dashArray: 4
+        },
+        labels: ['Dynamics Today'],
+    }
+    var chart = new ApexCharts(document.querySelector("#chart100"), options);
+    chart.render();
+    
+});        
+
+
+
+
 // chart 12
 	Highcharts.chart('chart12', {
 		chart: {
@@ -1245,5 +1336,3 @@ chart.render();
 
 
 
-
-});

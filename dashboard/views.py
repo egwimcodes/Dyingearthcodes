@@ -13,9 +13,8 @@ from django.contrib.auth.views import PasswordChangeView
 
 
 # cbv
-from django.views.generic import CreateView, FormView, TemplateView, DeleteView, UpdateView, View
+from django.views.generic import CreateView, FormView, TemplateView, DeleteView, UpdateView, View, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 # Create your views here.
 
 class UserCreationView(CreateView):
@@ -51,41 +50,39 @@ class AccountDeleteView(DeleteView, LoginRequiredMixin):
 
     
     
+#@method_decorator(login_required(login_url="login"), name="dispatch")
+class UserSensorsView(LoginRequiredMixin, DetailView, FormView):
+    template_name = 'dashboard/sensors_main.html'
+    model = User
+    context_object_name = 'user'
+    form_class = SensorListForm
 
-@login_required(login_url="login-page")
-def userProfile(request, pk):
-    user = get_object_or_404(User, username=request.user.username)
-    sensor_list = user.sensor_set.all().order_by("-id")
+    def get_object(self, queryset=None):
+        return self.request.user
 
-    # checking if the request is post
-    if request.method == 'POST':
-        # for updating user profile
-        updateform = UpdateUserForm(request.POST, request.FILES, instance=user)
-        if updateform.is_valid():
-            updateform.save()
-            return redirect(reverse('user-profile', kwargs={'pk': user.username}))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sensor_list'] = self.object.sensor_set.all().order_by("-id")
+        context['form'] = self.get_form()
+        return context
 
-        # for updating sensor list
-        form = SensorListForm(request.POST)
+    def form_valid(self, form):
+        # Handle form submission logic here
+        user = self.request.user
+        
+         # Update sensor list
+        sensor_id = self.request.POST.get("sensor_id")
+        sensor = get_object_or_404(Sensor, id=sensor_id, user=user)
+        form = SensorListForm(self.request.POST, instance=sensor)
         if form.is_valid():
-            id = request.POST.get('id')
-            print(id)
-            sensor_id = request.POST.get("sensor_id")
-            sensor = get_object_or_404(Sensor, id=sensor_id, user=user)
-            form = SensorListForm(request.POST, instance=sensor)
-            if form.is_valid():
-                form.save()
-                return redirect(reverse('user-profile', kwargs={'pk': user.username}))
-    else:
-        form = SensorListForm()
+            form.save()
+            return redirect(reverse('sensors', kwargs={'pk': user.username}))
 
-    # context for rendering the page
-    context = {
-        "sensor_list": sensor_list,
-        "user": user,
-        "form": form,
-    }
-    return render(request, "dashboard/user-profile.html", context)
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Handle invalid form submission logic here
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 @login_required(login_url="login-page")

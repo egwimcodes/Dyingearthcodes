@@ -6,7 +6,6 @@ from django.contrib.auth.models import AbstractUser
 # ####### Sensor User model start ########labdooadmin
 class User(AbstractUser):
     email = models.EmailField(unique=True, null=True)
-    
     phone = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     country = models.CharField(max_length=100, null=True , blank=True)
@@ -27,7 +26,6 @@ class User(AbstractUser):
 class Sensor(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sensor_set')
     name = models.CharField(max_length=100, null=True, blank=True)
-    payloads = models.OneToOneField('Payloads', on_delete=models.CASCADE, null=True, blank=True, related_name='sensor_payload')
     description = models.TextField(max_length=500, null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
     counter = models.FloatField(default=20.0)
@@ -59,18 +57,18 @@ class SensorQr(models.Model):
 
 # ####### Payloads model start ########
 class Payloads(models.Model):
-    sensor = models.OneToOneField(Sensor, on_delete=models.CASCADE, related_name='payload')
+    sensor = models.OneToOneField(Sensor, on_delete=models.CASCADE, related_name='payload_set')
     time = models.DateTimeField(null=True, blank=True, default=timezone.now)
     sensor_identifier = models.CharField(max_length=100, null=True, blank=True)  # Change 'sensor_id' to 'sensor_identifier' or another unique name
-    soil_moisture = models.FloatField(default=0.0)
-    temperature = models.FloatField(default=0.0)
-    humidity = models.FloatField(default=0.0)
+    soil_moisture = models.FloatField(default=1.0)
+    temperature = models.FloatField(default=1.0)
+    humidity = models.FloatField(default=1.0)
     payload_name = models.CharField(max_length=100, null=True, blank=True)
 
 
 
     def __str__(self):
-        return str(self.payload_name)
+        return str(self.sensor)
 
     class Meta:
         verbose_name_plural = 'Payloads'

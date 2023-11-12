@@ -1,0 +1,41 @@
+{% load static %}
+{% load widget_tweaks %}
+<div class="card">
+    <div class="card-body">
+        <!-- ******************   profile detail start  ********************  -->
+        <div class="d-flex flex-column align-items-center text-center">
+            <div class="edit-image">
+                <img src="{{request.user.avatar.url}}" class="user-img" alt="avatar" style='width: 100px; height: 100px; border: 5px solid #fe9900'>
+            </div>
+            <div class="mt-3">
+                <h4>{{request.user.first_name}} {{request.user.last_name}}</h4>
+                <p class="text-secondary mb-1">@{{request.user.username}}</p>
+                <p class="text-muted font-size-sm">{{request.user.address}}</p>
+                <a  href="{% url 'settings' request.user.id%}" class="btn btn-primary">
+                 Edit
+                </a>
+            </div>
+        </div>
+        <!-- ******************   profile details end ********************  -->
+        <hr class="my-4"/>
+        <ul class="list-group list-group-flush">
+            <!-- ******************  profile sensor header start ********************  -->
+            <div class="d-flex justify-content-center text text-center">
+                <h3>Sensors</h3>
+            </div>
+            <!-- ******************   profile sensor header end ********************  -->
+
+            <!-- ******************   Big sensor profile icon  start********************  -->
+            <div class="d-flex justify-content-between text text-center align-items-center mx-5 my-1">
+                <img src="{% static 'assets/images/svg/sensors_icon.svg'%}" alt="">
+                <img src="{% static 'assets/images/svg/location_icon.svg'%}" alt="">
+
+            </div>
+            <!-- ******************   Big sensor profile icon  end********************  -->
+
+            <!-- ******************  Sensors Listing start ********************  -->
+           {% include 'dashboard/sensors.html' %}
+            <!-- ******************  Sensors Listing end ********************  -->
+        </ul>
+    </div>
+</div>

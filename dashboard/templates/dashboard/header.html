@@ -442,7 +442,7 @@
         <div class="user-box dropdown">
           <a
             class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
-            href="{% url 'user-profile' user.username  %}"
+            href="{% url 'sensors' user.username  %}"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -461,8 +461,8 @@
             <li>
               <a
                 class="dropdown-item"
-                href="{% url 'user-profile' user.username %}"
-                ><i class="bx bx-user"></i><span>Profile</span></a
+                href="{% url 'sensors' user.username %}"
+                ><i class="bx bx-user"></i><span>Sensors</span></a
               >
             </li>
 
@@ -484,7 +484,7 @@
             <li>
               <a
                 class="dropdown-item"
-                href="{% url 'user-profile' user.username  %}"
+                href="{% url 'sensors' user.username  %}"
                 ><i class="bx bx-download"></i><span>Downloads</span></a
               >
             </li>

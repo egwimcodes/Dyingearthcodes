@@ -3,7 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import CreateUserForm,DeleteAccountForm, CustomPasswordChangeForm , SensorListForm, UpdateUserForm, UpdateTodoForm
+from .forms import CreateUserForm, DeleteAccountForm, CustomPasswordChangeForm, SensorListForm, UpdateUserForm, UpdateTodoForm
 from .models import User, Sensor, TodoApp, SensorQr
 from datetime import datetime
 from django.utils import timezone
@@ -17,11 +17,11 @@ from django.views.generic import CreateView, FormView, TemplateView, DeleteView,
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
+
 class UserCreationView(CreateView):
     template_name = "dashboard/registration/register.html"
     form_class = CreateUserForm
     success_url = reverse_lazy('login')
-
 
 
 class SettingsView(LoginRequiredMixin, UpdateView):
@@ -32,25 +32,22 @@ class SettingsView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         # Retrieve the user based on the 'user_id' parameter from the URL
         return User.objects.get(id=self.kwargs['user_id'])
-    
+
     def get_success_url(self):
         return reverse('settings', kwargs={'user_id': self.request.user.id})
-    
-    
-    
-    
+
+
 class CustomPasswordChangeView(PasswordChangeView):
-    form_class = CustomPasswordChangeForm 
- 
-        
+    form_class = CustomPasswordChangeForm
+
+
 class AccountDeleteView(DeleteView, LoginRequiredMixin):
     model = User
     template_name = "dashboard/registration/account_delete_done.html"
     success_url = reverse_lazy('logout')
 
-    
-    
-#@method_decorator(login_required(login_url="login"), name="dispatch")
+
+# @method_decorator(login_required(login_url="login"), name="dispatch")
 class UserSensorsView(LoginRequiredMixin, DetailView, FormView):
     template_name = 'dashboard/sensors_main.html'
     model = User
@@ -69,8 +66,8 @@ class UserSensorsView(LoginRequiredMixin, DetailView, FormView):
     def form_valid(self, form):
         # Handle form submission logic here
         user = self.request.user
-        
-         # Update sensor list
+
+        # Update sensor list
         sensor_id = self.request.POST.get("sensor_id")
         sensor = get_object_or_404(Sensor, id=sensor_id, user=user)
         form = SensorListForm(self.request.POST, instance=sensor)
@@ -95,13 +92,16 @@ def settingsView(request):
         for i in range(unregistered_sensors):
             uuid_code = uuid.uuid4()
             main_uuid = str(uuid_code).upper().replace('-', '')[:20]
-            formatted = "DE-" + '-'.join([main_uuid[i:i + 5] for i in range(0, len(main_uuid), 5)])
+            formatted = "DE-" + \
+                '-'.join([main_uuid[i:i + 5]
+                         for i in range(0, len(main_uuid), 5)])
             try:
                 # Try creating the new sensor entry
                 SensorQr.objects.create(sensor_qr=formatted)
             except IntegrityError:
                 # If there's a duplicate (IntegrityError), delete one of them and then create the new entry
-                duplicate_sensor = SensorQr.objects.filter(sensor_qr=formatted).first()
+                duplicate_sensor = SensorQr.objects.filter(
+                    sensor_qr=formatted).first()
                 if duplicate_sensor:
                     duplicate_sensor.delete()
                 SensorQr.objects.create(sensor_qr=formatted)
@@ -136,20 +136,21 @@ def settingsView(request):
                 if matching_token:
                     adding_to_db = str(matching_token)
                     if adding_to_db:
-                        auto_sensor = Sensor(name=f"New Sensor {matching_token_id}", user=user, location="No Location Added")
+                        auto_sensor = Sensor(
+                            name=f"New Sensor {matching_token_id}", user=user, location="No Location Added")
                         auto_sensor.save()
                         sensor_qr = SensorQr.objects.get(id=matching_token_id)
                         sensor_qr.sensor = auto_sensor
                         sensor_qr.save()
-                        messages.success(request, "Sensor added successfully, Please rename as soon as possible")
+                        messages.success(
+                            request, "Sensor added successfully, Please rename as soon as possible")
                         return redirect(reverse('settings'))
                 else:
-                    messages.error(request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
+                    messages.error(
+                        request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
                     return redirect(reverse('settings'))
         else:
             pass
-
-
 
     else:
         form = SensorListForm()
@@ -161,8 +162,9 @@ def settingsView(request):
     }
     return render(request, "dashboard/settings.html", context)
 
+
 def sensorAddView(request):
-    
+
     user = get_object_or_404(User, username=request.user.username)
     sensor_list = user.sensor_set.all().order_by("-id")
 
@@ -171,13 +173,16 @@ def sensorAddView(request):
         for i in range(unregistered_sensors):
             uuid_code = uuid.uuid4()
             main_uuid = str(uuid_code).upper().replace('-', '')[:20]
-            formatted = "DE-" + '-'.join([main_uuid[i:i + 5] for i in range(0, len(main_uuid), 5)])
+            formatted = "DE-" + \
+                '-'.join([main_uuid[i:i + 5]
+                         for i in range(0, len(main_uuid), 5)])
             try:
                 # Try creating the new sensor entry
                 SensorQr.objects.create(sensor_qr=formatted)
             except IntegrityError:
                 # If there's a duplicate (IntegrityError), delete one of them and then create the new entry
-                duplicate_sensor = SensorQr.objects.filter(sensor_qr=formatted).first()
+                duplicate_sensor = SensorQr.objects.filter(
+                    sensor_qr=formatted).first()
                 if duplicate_sensor:
                     duplicate_sensor.delete()
                 SensorQr.objects.create(sensor_qr=formatted)
@@ -212,20 +217,21 @@ def sensorAddView(request):
                 if matching_token:
                     adding_to_db = str(matching_token)
                     if adding_to_db:
-                        auto_sensor = Sensor(name=f"New Sensor {matching_token_id}", user=user, location="No Location Added")
+                        auto_sensor = Sensor(
+                            name=f"New Sensor {matching_token_id}", user=user, location="No Location Added")
                         auto_sensor.save()
                         sensor_qr = SensorQr.objects.get(id=matching_token_id)
                         sensor_qr.sensor = auto_sensor
                         sensor_qr.save()
-                        messages.success(request, "Sensor added successfully, Please rename as soon as possible")
+                        messages.success(
+                            request, "Sensor added successfully, Please rename as soon as possible")
                         return redirect(reverse('settings'))
                 else:
-                    messages.error(request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
+                    messages.error(
+                        request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
                     return redirect(reverse('settings'))
         else:
             pass
-
-
 
     else:
         form = SensorListForm()
@@ -237,15 +243,16 @@ def sensorAddView(request):
     }
     return render(request, "dashboard/add-sensor.html", context)
 
-@login_required(login_url="login")
-def mainPage(request):
-    return render(request, "dashboard/main.html")
 
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "dashboard/main.html"
+    context_object_name = 'user'
 
-@login_required(login_url="login-page")
-def appCalendar(request):
-    return render(request, "dashboard/app-fullcalendar.html")
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user  # Use self.request.user to get the current user
+        context['sensor_list'] = user.sensor_set.all().order_by("-id")
+        return context
 
 @login_required(login_url="login-page")
 def appTodo(request):
@@ -260,7 +267,8 @@ def appTodo(request):
     if request.method == "POST" and choose_form:
         try:
             todo_time = todo_add_time if todo_add_time else timezone.now()
-            todo = TodoApp.objects.create(text=todo_add_text, user=user, time=todo_time)
+            todo = TodoApp.objects.create(
+                text=todo_add_text, user=user, time=todo_time)
             todo.save()
             messages.success(request, "Todo added successfully")
             return redirect(reverse('app-todo'))
@@ -279,8 +287,8 @@ def appTodo(request):
                     form.save()
                     messages.success(request, "Todo updated successfully")
         except:
-            messages.error(request, "Please enter valid data for updating the todo")
-
+            messages.error(
+                request, "Please enter valid data for updating the todo")
 
     elif request.method == "POST" and del_id:
         try:
@@ -289,7 +297,8 @@ def appTodo(request):
             messages.success(request, "Todo deleted successfully")
             return redirect(reverse('app-todo'))
         except:
-            messages.error(request, "Please enter valid data for deleting the todo")
+            messages.error(
+                request, "Please enter valid data for deleting the todo")
 
     context = {
         "todos": todos,

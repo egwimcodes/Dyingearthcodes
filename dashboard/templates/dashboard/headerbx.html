@@ -26,8 +26,7 @@
         <!-- *** logo end -->
 
         <!-- **** odo start ****-->
-        <div class="mobile-toggle-menu ">
-          <div class="d-flex flex-row align-items-center">
+        <div class="mobile-toggle-menu d-flex align-items-center">
             <a href="{% url 'dashboard' %}">
               <div class="">
                 <img
@@ -42,7 +41,6 @@
                 <h4 class="logo-text">Dyingearth</h4>
               </div>
             </a>
-          </div>
         </div>
         <div class="top-menu-left d-none d-lg-block ps-3">
           <ul class="nav">
@@ -57,7 +55,6 @@
         <!-- **** calalender & todo end ****-->
 
         <div class="user-box dropdown ms-auto">
-         
           <a
             class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
             href="{% url 'sensors' user.username  %}"
@@ -74,7 +71,6 @@
               <p class="user-name mb-0">{{request.user.username}}</p>
               <p class="designattion mb-0">@{{request.user.username}}</p>
             </div>
-           
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
@@ -96,11 +92,17 @@
               >
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'dashboard' %}"
+              <a class="dropdown-item" href=""
                 ><i class="bx bx-home-circle"></i><span>Dashboard</span></a
               >
             </li>
-           
+            <li>
+              <a
+                class="dropdown-item"
+                href="{% url 'sensors' user.username  %}"
+                ><i class="bx bx-download"></i><span>Downloads</span></a
+              >
+            </li>
             <li>
               <div class="dropdown-divider mb-0"></div>
             </li>
@@ -110,6 +112,7 @@
               >
             </li>
           </ul>
+          <i class="bx bx-menu"></i>
         </div>
       </nav>
     </div>

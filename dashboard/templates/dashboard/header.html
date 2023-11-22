@@ -26,7 +26,7 @@
         <!-- *** logo end -->
 
         <!-- **** odo start ****-->
-        <div class="mobile-toggle-menu ">
+        <div class="mobile-toggle-menu">
           <div class="d-flex flex-row align-items-center">
             <a href="{% url 'dashboard' %}">
               <div class="">
@@ -57,7 +57,6 @@
         <!-- **** calalender & todo end ****-->
 
         <div class="user-box dropdown ms-auto">
-         
           <a
             class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
             href="{% url 'sensors' user.username  %}"
@@ -74,24 +73,23 @@
               <p class="user-name mb-0">{{request.user.username}}</p>
               <p class="designattion mb-0">@{{request.user.username}}</p>
             </div>
-           
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a
-                class="dropdown-item"
-                href="{% url 'sensors' user.username %}"
+              <a class="dropdown-item" href="{% url 'sensors' user.username %}"
                 ><i class="bx bx-user"></i><span>Sensors</span></a
               >
             </li>
 
             <li>
-              <a class="dropdown-item" href="{% url 'add-sensor' %}"
+              <a class="dropdown-item" href="{% url 'register_new_sensor' request.user.id %}"
                 ><i class="bx bx-plus"></i><span>Add Sensor</span></a
               >
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'settings' request.user.id  %}"
+              <a
+                class="dropdown-item"
+                href="{% url 'settings' request.user.id  %}"
                 ><i class="bx bx-cog"></i><span>Settings</span></a
               >
             </li>
@@ -100,7 +98,7 @@
                 ><i class="bx bx-home-circle"></i><span>Dashboard</span></a
               >
             </li>
-           
+
             <li>
               <div class="dropdown-divider mb-0"></div>
             </li>

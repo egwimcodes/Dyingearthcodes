@@ -89,13 +89,22 @@ class UpdateUserForm(forms.ModelForm):
         fields = ['username', 'first_name', 'last_name', 'email', 'phone', 'address', 'country', 'city', 'zip_code', 'avatar']
 
 
-class SensorListForm(ModelForm):
+class RegisterSensorForm(forms.Form):
+    new_sensor_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'new_sensor_name', 'required':'required'}))
+    sensor_location = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'sensor_location', 'required':'required'}))
+    sensor_qr = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control mt-3 mx-auto', 'name': 'sensor_code','style':'font-size: 20px', 'id': '1','required':'required', "placeholder": "DE - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX - XXXXX"}))
+    
+    class Meta:
+        fields = ['new_sensor_name', 'sensor_location', 'sensor_qr']
+
+
+class SensorListForm(forms.ModelForm):
     class Meta:
         model = Sensor
         fields = ['name', 'location']
 
 
-class UpdateTodoForm(ModelForm):
+class UpdateTodoForm(forms.ModelForm):
     class Meta:
         model = TodoApp
         fields = ['text', 'done', 'time']

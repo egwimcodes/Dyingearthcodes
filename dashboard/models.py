@@ -40,18 +40,26 @@ class Sensor(models.Model):
         verbose_name_plural = 'Sensors'
 # ####### Sensor model end ########
 
-
-# ####### Sensor Qr Code start ########
-class SensorQr(models.Model):
-    sensor = models.OneToOneField(Sensor, on_delete=models.CASCADE, null=True, blank=True)
-    sensor_qr = models.CharField(max_length=27, null=True, blank=True, unique=True)
-    qr_image = models.ImageField(null=True, blank=True)
+class SoldSensorQr(models.Model):
+    sensor = models.OneToOneField(Sensor, on_delete=models.CASCADE, null=True, blank=True, related_name='soldsensorqr_set')
+    sold_sensor_qr_code = models.CharField(max_length=22, null=True, blank=True, unique=True)
 
     def __str__(self):
-        return self.sensor_qr
+        return str(self.sold_sensor_qr_code)
 
     class Meta:
-        verbose_name_plural = "Sensor Qr Code"
+        verbose_name_plural = "Sold Sensors Qr Code"
+        
+        
+# ####### Sensor Qr Code start ########
+class UnSoldSensorQr(models.Model):
+    unsold_sensor_qr_code = models.CharField(max_length=22, null=True, blank=True, unique=True)
+
+    def __str__(self):
+        return self.unsold_sensor_qr_code
+
+    class Meta:
+        verbose_name_plural = "Unsold Sensors Qr Code"
 # ####### Sensor Qr Code end #######
 
 
@@ -60,9 +68,9 @@ class Payloads(models.Model):
     sensor = models.OneToOneField(Sensor, on_delete=models.CASCADE, related_name='payload_set')
     time = models.DateTimeField(null=True, blank=True, default=timezone.now)
     sensor_identifier = models.CharField(max_length=100, null=True, blank=True)  # Change 'sensor_id' to 'sensor_identifier' or another unique name
-    soil_moisture = models.FloatField(default=1.0)
-    temperature = models.FloatField(default=1.0)
-    humidity = models.FloatField(default=1.0)
+    soil_moisture = models.FloatField(default=0.0)
+    temperature = models.FloatField(default=0.0)
+    humidity = models.FloatField(default=0.0)
     payload_name = models.CharField(max_length=100, null=True, blank=True)
 
 

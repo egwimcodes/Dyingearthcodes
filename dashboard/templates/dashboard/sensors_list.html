@@ -1,0 +1,106 @@
+{% load static %}
+<ul class="list-group list-group-flush">
+    <!-- ******************  profile sensor header start ********************  -->
+    <div class="d-flex justify-content-center text text-center">
+        <h3>Sensors</h3>
+    </div>
+    <!-- ******************   profile sensor header end ********************  -->
+
+    <!-- ******************   Big sensor profile icon  start********************  -->
+    <div class="d-flex justify-content-between text text-center align-items-center mx-5 my-1">
+        <img src="{% static 'assets/images/svg/sensors_icon.svg'%}" alt="">
+        <img src="{% static 'assets/images/svg/location_icon.svg'%}" alt="">
+
+    </div>
+    <!-- ******************   Big sensor profile icon  end********************  -->
+
+    <!-- ******************  Sensors Listing start ********************  -->
+    {% if sensor_list %}
+    {% for sensor in sensor_list %}
+    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap m-0">
+        <h6 class="mb-0">
+            <img src="{% static 'assets/images/svg/small_sensors_icon.svg'%}" alt="">
+            {{sensor.name}}
+        </h6>
+        <span class="text-secondary">{{sensor.location}}
+                            <a
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{sensor.id}}"
+                                    data-bs-whatever="@getbootstrap"
+                                    class="ms-1"
+                            >
+                            <img src="{% static 'assets/images/svg/edit_icon.svg'%}" alt="">
+    
+                                                </a>
+            </form>
+                    </span>
+    </li>
+    <!-- ******************  Sensors Listing end ********************  -->
+    <div class="modal fade" id="exampleModal{{sensor.id}}" tabindex="-1"
+         aria-labelledby="sensorModalLabel{{ sensor.id }}"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="sensorModalLabel{{ sensor.id }}"> Updating <span
+                            class="text-primary">"{{sensor.name}}"</span> Sensor </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="form{{ sensor.id }}">
+                        {% csrf_token %}
+                        <input type='hidden' value='{{sensor.id}}' name='sensor_id'>
+                        <div class="form-group">
+                            <label for="sensor-qr" class="col-form-label">ID</label>
+                            <input
+                                    type="text"
+                                    value="{{sensor.sensorqr.sensor_qr}}"
+                                    class="form-control"
+                                    id="sensor-qr"
+                                    name="sensor_qr"
+                                    readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="sensor_name" class="col-form-label">Sensor Name: </label>
+                            <input
+                                    type="text"
+                                    value="{{sensor.name}}"
+                                    class="form-control"
+                                    id="sensor_name"
+                                    name="name"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="sensor_location" class="col-form-label">Sensor Location: </label>
+                            <input
+                                    type="text"
+                                    value="{{sensor.location}}"
+                                    class="form-control"
+                                    id="sensor_location"
+                                    name="location"
+                            />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close
+                    </button>
+                    <input type="submit" value="Update" name="uform" form="form{{ sensor.id }}" class="btn btn-primary">
+                    </input>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="container">
+        <div class="d-flex justify-content-center ">
+            <!--  You have not registered a sensor    -->
+            <h1 class="text-secondary py-5"> No registerd sensor </h1>
+        </div>
+    </div>
+    {% endif %}
+    <!-- ******************  Sensors Listing end ********************  -->
+</ul>

@@ -161,9 +161,9 @@ SOCIALACCOUNT_PROVIDERS = {
             "access_type": "online",
         },
     },
-    
+
     'facebook': {
-          'APP': {
+        'APP': {
             'client_id': '1764496560732221',
             'secret': 'G124decffbe0a0490256bff9bc99f49e4',
             'key': '',
@@ -254,8 +254,12 @@ JAZZMIN_SETTINGS = {
     "order_with_respect_to": [
         "dashboard.User",
         "dashboard.Sensor",
-        "dashboard.SensorQr",
         "dashboard.Payloads",
+        "dashboard.SoldSensorQr",
+        "dashboard.UnSoldSensorQr",
+
+
+
 
     ],
     "show_ui_builder": True,

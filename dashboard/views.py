@@ -173,85 +173,85 @@ class RegisterNewSensorView(LoginRequiredMixin, DetailView, FormView):
         return super(RegisterNewSensorView, self).form_valid(form)
 
 
-def sensorAddView(request):
+# def sensorAddView(request):
 
-    user = get_object_or_404(User, username=request.user.username)
-    sensor_list = user.sensor_set.all().order_by("-id")
+#     user = get_object_or_404(User, username=request.user.username)
+#     sensor_list = user.sensor_set.all().order_by("-id")
 
-    # this block generates qr code and check for duplicate in the database when the qrcode is exhausted
-    def sensor_code_generator(unregistered_sensors):
-        for i in range(unregistered_sensors):
-            uuid_code = uuid.uuid4()
-            main_uuid = str(uuid_code).upper().replace('-', '')[:20]
-            formatted = "DE-" + \
-                '-'.join([main_uuid[i:i + 5]
-                         for i in range(0, len(main_uuid), 5)])
-            try:
-                # Try creating the new sensor entry
-                SensorQr.objects.create(sensor_qr=formatted)
-            except IntegrityError:
-                # If there's a duplicate (IntegrityError), delete one of them and then create the new entry
-                duplicate_sensor = SensorQr.objects.filter(
-                    sensor_qr=formatted).first()
-                if duplicate_sensor:
-                    duplicate_sensor.delete()
-                SensorQr.objects.create(sensor_qr=formatted)
+#     # this block generates qr code and check for duplicate in the database when the qrcode is exhausted
+#     def sensor_code_generator(unregistered_sensors):
+#         for i in range(unregistered_sensors):
+#             uuid_code = uuid.uuid4()
+#             main_uuid = str(uuid_code).upper().replace('-', '')[:20]
+#             formatted = "DE-" + \
+#                 '-'.join([main_uuid[i:i + 5]
+#                          for i in range(0, len(main_uuid), 5)])
+#             try:
+#                 # Try creating the new sensor entry
+#                 SensorQr.objects.create(sensor_qr=formatted)
+#             except IntegrityError:
+#                 # If there's a duplicate (IntegrityError), delete one of them and then create the new entry
+#                 duplicate_sensor = SensorQr.objects.filter(
+#                     sensor_qr=formatted).first()
+#                 if duplicate_sensor:
+#                     duplicate_sensor.delete()
+#                 SensorQr.objects.create(sensor_qr=formatted)
 
-    if not SensorQr.objects.all():
-        for qr in SensorQr.objects.all().values():
-            if qr['sensor_id'] == None:
-                pass
-        sensor_code_generator(100)
+#     if not SensorQr.objects.all():
+#         for qr in SensorQr.objects.all().values():
+#             if qr['sensor_id'] == None:
+#                 pass
+#         sensor_code_generator(100)
 
-    try:
-        form = SensorListForm(request.POST)
-        if form.is_valid():
-            id = request.POST.get('id')
-            sensor_id = request.POST.get("sensor_id")
-            sensor = get_object_or_404(Sensor, id=sensor_id, user=user)
-            form = SensorListForm(request.POST, instance=sensor)
-            if form.is_valid():
-                form.save()
-    except:
-        if request.method == 'POST':
-            if request.POST.get("register_new_sensor"):
-                adding_sensor = request.POST.get("register_new_sensor")
-                matching_token = None
+#     try:
+#         form = SensorListForm(request.POST)
+#         if form.is_valid():
+#             id = request.POST.get('id')
+#             sensor_id = request.POST.get("sensor_id")
+#             sensor = get_object_or_404(Sensor, id=sensor_id, user=user)
+#             form = SensorListForm(request.POST, instance=sensor)
+#             if form.is_valid():
+#                 form.save()
+#     except:
+#         if request.method == 'POST':
+#             if request.POST.get("register_new_sensor"):
+#                 adding_sensor = request.POST.get("register_new_sensor")
+#                 matching_token = None
 
-                for token in SensorQr.objects.all().values():
-                    if token['sensor_qr'] == adding_sensor and token['sensor_id'] == None:
-                        matching_token = token
-                        matching_token_id = token['id']
-                        break
+#                 for token in SensorQr.objects.all().values():
+#                     if token['sensor_qr'] == adding_sensor and token['sensor_id'] == None:
+#                         matching_token = token
+#                         matching_token_id = token['id']
+#                         break
 
-                if matching_token:
-                    adding_to_db = str(matching_token)
-                    if adding_to_db:
-                        auto_sensor = Sensor(
-                            name=f"New Sensor {matching_token_id}", user=user, location="No Location Added")
-                        auto_sensor.save()
-                        sensor_qr = SensorQr.objects.get(id=matching_token_id)
-                        sensor_qr.sensor = auto_sensor
-                        sensor_qr.save()
-                        messages.success(
-                            request, "Sensor added successfully, Please rename as soon as possible")
-                        return redirect(reverse('settings'))
-                else:
-                    messages.error(
-                        request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
-                    return redirect(reverse('settings'))
-        else:
-            pass
+#                 if matching_token:
+#                     adding_to_db = str(matching_token)
+#                     if adding_to_db:
+#                         auto_sensor = Sensor(
+#                             name=f"New Sensor {matching_token_id}", user=user, location="No Location Added")
+#                         auto_sensor.save()
+#                         sensor_qr = SensorQr.objects.get(id=matching_token_id)
+#                         sensor_qr.sensor = auto_sensor
+#                         sensor_qr.save()
+#                         messages.success(
+#                             request, "Sensor added successfully, Please rename as soon as possible")
+#                         return redirect(reverse('settings'))
+#                 else:
+#                     messages.error(
+#                         request, "Invalid QR Code or Code Already Used, please type carefully Thank you.")
+#                     return redirect(reverse('settings'))
+#         else:
+#             pass
 
-    else:
-        form = SensorListForm()
+#     else:
+#         form = SensorListForm()
 
-    context = {
-        "sensor_list": sensor_list,
-        "user": user,
-        "form": form,
-    }
-    return render(request, "dashboard/register_new_sensor.html", context)
+#     context = {
+#         "sensor_list": sensor_list,
+#         "user": user,
+#         "form": form,
+#     }
+#     return render(request, "dashboard/register_new_sensor.html", context)
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):

@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'celery',
+    'django_celery_beat',
 
 
 
@@ -279,3 +281,27 @@ EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+# Celery Configurations here 
+
+# set the celery broker url 
+CELERY_IMPORTS = ("dashboard.tasks", )
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# set the celery result backend 
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+# set the celery timezone 
+CELERY_TIMEZONE = 'UTC'
+
+
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "dashboard.tasks.add",
+        "schedule": 5.0,
+        "args": (10, 10),
+    }
+}

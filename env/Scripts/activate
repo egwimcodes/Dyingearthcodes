@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Developmet\Python\Django\Dyingearthcodes\env"
+VIRTUAL_ENV="C:\Users\egwim\Development\Python\Django\Projects\Dyingearthcodes\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

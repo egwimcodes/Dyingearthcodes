@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    'rest_framework_swagger',
     'rest_framework',
+    'drf_yasg'
 
 
 

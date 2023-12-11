@@ -299,9 +299,22 @@ CELERY_TIMEZONE = 'UTC'
 
 
 CELERY_BEAT_SCHEDULE = {
-    "scheduled_task": {
-        "task": "dashboard.tasks.add",
-        "schedule": 5.0,
-        "args": (10, 10),
+    "scheduled_task_1": {
+        "task": "dashboard.tasks.sensorsReminder",
+        "schedule": 18000.0,
+    },
+    "scheduled_task_2": {
+        "task": "dashboard.tasks.sensorsReports",
+        "schedule": 86400.0,
     }
-}
+} 
+
+# Email Backend Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = 'egwimcodes@gmail.com'
+EMAIL_HOST_PASSWORD = 'uofy rlcx bene idox'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

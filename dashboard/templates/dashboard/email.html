@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dying Earth</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: #fe9900;
+        }
+
+        hr {
+            background-color: #fe9900;
+            height: 2px;
+            border: none;
+            margin: 20px 0;
+        }
+
+        .content {
+            font-size: 16px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #fe9900;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .footer {
+            background-color: #fe9900;
+            padding: 20px;
+            border-radius: 0.5em;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .footer-info {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Dying Earth</h1>
+        <hr>
+    </div>
+
+    <div class="content">
+        <p>Hello {{user.username}},</p>
+        <p>We are excited to share the following information with you:</p>
+        <table class="table">
+            <tr>
+                <th colspan="3" style="text-align: center;background-color: #fe9900;">        Sensor Analysis {% if report %} Report {% elif reminder %} Reminder {% endif %}</th>
+            </tr>
+            <tr class="" style="background-color:#c7c5c3ee;">
+                <th>Sensors</th>
+                <th>Locations</th>
+                <th>Action Needed</th>
+            </tr>
+            {% for sensor in sensors %}
+            <tr>
+                <td>{{ sensor.name }}</td>
+                <td>{{ sensor.location }}</td>
+                <td>
+                        {% if sensor.payload_set.soil_moisture < 30 %}
+                        <div style='color: red;'>No Water in plant</div>
+                        {% elif sensor.payload_set.soil_moisture < 70 %}
+                        <div style='color: orange;'>Please water the plant</div>
+                        {% elif sensor.payload_set.soil_moisture > 70 %}
+                            <div style='color: green;'>No Action needed</div>
+                        {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+    <div class="footer">
+        <div class="footer-info">
+            <div>
+                <h3>About</h3>
+                <p>A sensor company, we help you monitor the plant</p>
+            </div>
+            <div>
+                <h3>Contact Info</h3>
+                <p>Drachnefelsstraße 25, Germany<br>+49 176 44721323</p>
+            </div>
+            <div>
+                <h3>Useful Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Work</a></li>
+                </ul>
+            </div>
+        </div>
+
+        {% comment %} <p class="footer-info">No longer want to receive these emails?<br>You can
+            <a href="#" style="color:#ffffff;text-decoration:underline;font-size:14px">Unsubscribe here</a>
+        </p> {% endcomment %}
+    </div>
+</div>
+
+</body>
+</html>

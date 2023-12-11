@@ -13,7 +13,8 @@ from django.contrib.auth.views import PasswordChangeView
 
 
 # cbv
-from django.views.generic import CreateView, FormView, TemplateView, DeleteView, UpdateView, View, DetailView
+from django.views.generic import CreateView, FormView, TemplateView, DeleteView, UpdateView, View, DetailView, ListView
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 

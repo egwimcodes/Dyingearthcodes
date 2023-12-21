@@ -3,6 +3,8 @@ from .models import User, Sensor, TodoApp
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth import get_user_model
+from .countries import COUNTRY_CHOICES
+
 
 
 class CreateUserForm(UserCreationForm):
@@ -10,20 +12,24 @@ class CreateUserForm(UserCreationForm):
     first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name', 'name':'first name'}))
     last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name', 'name':'last name'}))
     email = forms.EmailField(max_length=100, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email', 'name':'email'}))
+    zip_code = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Zip code', 'name':'zip code'}))
     password1 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'name':'password1'}))
     password2 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password','name':'password2'}))
-    country = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Country','name':'country'}))
+    country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False, widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Country','name':'country'}))
+    receive_marketing_mails = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input', 'name':'receive_marketing_mails'}))
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'country']
+        fields = ['username', 'first_name', 'last_name', 'email', 'zip_code', 'password1', 'password2', 'country', 'receive_marketing_mails']
     def clean(self):
         cleaned_data = super().clean()
         
         username = cleaned_data.get('username')
         email = cleaned_data.get('email')
+        zip_code = cleaned_data.get('zip_code')
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
         country = cleaned_data.get('country')
+        receive_marketing_mails = cleaned_data.get('receive_marketing_mails')
 
         if username and not username.isalnum():
             self.add_error('username', 'Username must contain only letters and numbers.')
@@ -78,7 +84,7 @@ class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=100, widget=forms.EmailInput(attrs={'class': 'form-control', 'name': 'email', 'readonly': 'readonly' }), required=False)
     phone  = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'phone', 'readonly': 'readonly' }), required=False)
     address = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'address', 'readonly': 'readonly' }), required=False)
-    country = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'country', 'readonly': 'readonly' }), required=False)
+    country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False, widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Country','readonly': 'readonly', 'name':'country'}))
     city = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'city', 'readonly': 'readonly' }), required=False)
     zip_code = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'zip_code', 'readonly': 'readonly' }), required=False)
     avatar = forms.FileField(max_length=100, widget=forms.FileInput(attrs={'class': 'form-control', 'name': 'avatar', 'readonly': 'readonly' }), required=False)

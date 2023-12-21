@@ -20,7 +20,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class UserCreationView(CreateView):
-    template_name = "dashboard/registration/register.html"
+    template_name = "register.html"
     form_class = CreateUserForm
     success_url = reverse_lazy('login')
 

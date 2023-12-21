@@ -11,6 +11,7 @@ class User(AbstractUser):
     country = models.CharField(max_length=100, null=True , blank=True)
     city = models.CharField(max_length=100, null=True , blank=True) 
     zip_code = models.CharField(max_length=10, null=True, blank=True)
+    receive_marketing_mails = models.BooleanField(default=False)
     avatar = models.ImageField(null=True, default='avatar.png')
 
 

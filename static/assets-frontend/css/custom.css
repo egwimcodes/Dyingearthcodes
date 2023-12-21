@@ -1,0 +1,25 @@
+.btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited,
+    .btn-primary:focus {
+    color: #fff !important; 
+    background-color: #fe9900 !important;
+    border-color: #fe9900 !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary:visited,
+.btn-outline-primary:focus {
+    color: #000000 !important; 
+    background-color: #fe9900 !important;
+    border-color: #fe9900 !important;
+}
+
+.sensor-main{
+    transform: rotate(45deg);
+}
+
+.text-primary{
+    color: #fe9900 !important;
+}

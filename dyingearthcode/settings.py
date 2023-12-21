@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'rest_framework',
     'drf_yasg',
@@ -166,34 +166,34 @@ SOCIALACCOUNT_PROVIDERS = {
         },
     },
 
-    'facebook': {
-        'APP': {
-            'client_id': '1764496560732221',
-            'secret': 'G124decffbe0a0490256bff9bc99f49e4',
-            'key': '',
-            'sites': ['localhost:9000']
-        },
-        'METHOD': 'oauth2',  # Set to 'js_sdk' to use the Facebook connect SDK
-        'SCOPE': ['email', 'public_profile'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-        'FIELDS': [
-            'id',
-            'username',
-            'first_name',
-            'last_name',
-            'middle_name',
-            'name',
-            'name_format',
-            'picture',
-            'short_name'
-        ],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': lambda request: 'en_US',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v13.0',
-        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
-    }
+    # 'facebook': {
+    #     'APP': {
+    #         'client_id': '1764496560732221',
+    #         'secret': 'G124decffbe0a0490256bff9bc99f49e4',
+    #         'key': '',
+    #         'sites': ['localhost:9000']
+    #     },
+    #     'METHOD': 'oauth2',  # Set to 'js_sdk' to use the Facebook connect SDK
+    #     'SCOPE': ['email', 'public_profile'],
+    #     'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+    #     'INIT_PARAMS': {'cookie': True},
+    #     'FIELDS': [
+    #         'id',
+    #         'username',
+    #         'first_name',
+    #         'last_name',
+    #         'middle_name',
+    #         'name',
+    #         'name_format',
+    #         'picture',
+    #         'short_name'
+    #     ],
+    #     'EXCHANGE_TOKEN': True,
+    #     'LOCALE_FUNC': lambda request: 'en_US',
+    #     'VERIFIED_EMAIL': False,
+    #     'VERSION': 'v13.0',
+    #     'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
+    # }
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -272,18 +272,6 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "pluse",
 }
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'egwimcodes@gmail.com'
-EMAIL_HOST_PASSWORD = 'yecojllujqpcdpzb'
-EMAIL_PORT = 465
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-
 # Celery Configurations here 
 
 # set the celery broker url 
@@ -315,6 +303,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-EMAIL_HOST_USER = 'egwimcodes@gmail.com'
-EMAIL_HOST_PASSWORD = 'uofy rlcx bene idox'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

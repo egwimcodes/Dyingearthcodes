@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <!--required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--twitter og-->
+    <meta name="twitter:site" content="@dyingearth">
+    <meta name="twitter:creator" content="@dyingearth">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dyingearth - Optimize your watering
+    strategy with
+    intelligent insights">
+    <meta name="twitter:description"
+        content="Dyingearth - Empower your farm with the intelligence of advanced soil sensors.">
+    <meta name="twitter:image" content="#">
+
+    <!--facebook og-->
+    <meta property="og:url" content="#">
+    <meta name="twitter:title" content="Dyingearth - Optimize your watering
+    strategy with
+    intelligent insights">
+    <meta property="og:description"
+        content="Dyingearth - Empower your farm with the intelligence of advanced soil sensors.">
+    <meta property="og:image" content="#">
+    <meta property="og:image:secure_url" content="#">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!--meta-->
+    <meta name="description" content="Dyingearth - Empower your farm with the intelligence of advanced soil sensors">
+    <meta name="author" content="dyingearth">
+
+    <!--favicon icon-->
+    <link rel="icon" href="{% static 'assets-frontend/img/favicon-32x32.ico' %}" type="image/png" sizes="16x16">
+
+    <!--title-->
+    <title>Dyingearth - Empower your farm with the intelligence of advanced soil sensors</title>
+
+    <!--build:css-->
+    <link rel="stylesheet" href="{% static 'assets-frontend/css/main.css'%}">
+    <!-- endbuild -->
+
+    <!--custom css start-->
+    <link rel="stylesheet" href="{% static 'assets-frontend/css/custom.css' %}">
+    <!--custom css end-->
+
+</head>
+
+<body>
+
+    <!--preloader start-->
+    <div id="preloader" class="bg-light-subtle">
+        <div class="preloader-wrap">
+            <img src="{% static 'assets-frontend/img/favicon-32x32.ico' %}" alt="logo" class="img-fluid preloader-icon">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+    <!--preloader end-->
+    <!--main content wrapper start-->
+    <div class="main-wrapper">
+
+        <!--header section start-->
+        <!--header start-->
+        <header class="main-header position-absolute w-100">
+            <nav class="navbar navbar-expand-xl navbar-dark sticky-header z-10">
+                <div class="container d-flex align-items-center justify-content-lg-between position-relative">
+                    <a href="index-2.html" class="navbar-brand d-flex align-items-center mb-md-0 text-decoration-none">
+                        <img src="{% static 'assets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid logo-white" />
+                        <img src="{% static 'assets-frontend/img/logo-img-black.png' %}" alt="logo" class="img-fluid logo-color" />
+                    </a>
+                    <a class="navbar-toggler position-absolute right-0 border-0" href="#offcanvasWithBackdrop">
+                        <i class="flaticon-menu" data-bs-target="#offcanvasWithBackdrop"
+                            aria-controls="offcanvasWithBackdrop" data-bs-toggle="offcanvas" role="button"></i>
+                    </a>
+                    <div class="clearfix"></div>
+                    <div class="collapse navbar-collapse justify-content-center">
+                        <ul class="nav col-12 col-md-auto justify-content-center main-menu">
+                            <li class="nav-item dropdown"><a class="nav-link" href="{% url 'index'%}">Home</a></li>
+                            <li><a href="{% url 'about-us' %}" class="nav-link">About Us</a></li>
+                            <li class="nav-item dropdown"><a class="nav-link" href="{% url 'contact-us'%}">Contact Us</a> 
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block">
+                        <a href="javascript:void(0)" class="btn btn-link p-1 tt-theme-toggle">
+                            <div class="tt-theme-light" data-bs-toggle="tooltip" data-bs-placement="left"
+                                data-bs-title="Light"><i class="flaticon-sun-1 fs-lg"></i></div>
+                            <div class="tt-theme-dark" data-bs-toggle="tooltip" data-bs-placement="left"
+                                data-bs-title="Dark"><i class="flaticon-moon-1 fs-lg"></i></div>
+                        </a> <a href="{% url 'login' %}" class="btn btn-link text-decoration-none me-2">Sign In</a>
+                        <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+            </nav>
+            <!--offcanvas menu start-->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasWithBackdrop">
+                <div class="offcanvas-header d-flex align-items-center mt-4">
+                    <a href="index-2.html" class="d-flex align-items-center mb-md-0 text-decoration-none">
+                        <img src="{% static 'assets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid ps-2" />
+                    </a>
+                    <button type="button" class="close-btn text-danger" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <i class="flaticon-cancel"></i>
+                    </button>
+                </div>
+                <div class="offcanvas-body z-10">
+                    <ul class="nav col-12 col-md-auto justify-content-center main-menu">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'about-us'%}" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contact-us' %}">Contact Us</a></li>
+                    </ul>
+                    <div class="action-btns mt-4 ps-3">
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Sign In</a>
+                        <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <!--offcanvas menu end-->
+        </header>
+        <!--header end--> <!--header section end-->
+
+        <!--hero section start-->
+        <section class="hero-section ptb-120 text-white bg-gradient" style="background: url('{% static "assets-frontend/img/hero-dot-bg.png" %}') no-repeat center right">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-10">
+                        <div class="hero-content-wrap mt-5 mt-lg-0 mt-xl-0">
+                            <h1 class="fw-bold display-5 text-center">Optimize your watering <br> strategy with <br>
+                                intelligent insights</h1>
+                            <p class="lead">Empower your farm with the intelligence of advanced soil sensors</p>
+                            <div class="action-btn mt-5 align-items-center d-block d-sm-flex d-lg-flex d-md-flex">
+                                <a href="{% url 'register' %}" class="btn btn-primary me-3">Request For Our Sensor</a>
+                                <a href="https://youtu.be/K_jfj4Krj7M?si=V72zsGrK6vMuaQq7"
+                                    class="text-decoration-none popup-youtube d-inline-flex align-items-center watch-now-btn mt-3 mt-lg-0 mt-md-0">
+                                    <i class="fas fa-play"></i> Watch Demo </a>
+                            </div>
+                            <div class="row justify-content-lg-start mt-60">
+                                <h5 class="text-white-70 mb-2">What Our Sensor Monitors: </h5>
+                                <div class="col-4 col-sm-3 my-2 ps-lg-0">
+                                    <h6>Moisture</h6>
+                                </div>
+                                <div class="col-4 col-sm-3 my-2">
+                                    <h6>Humidity</h6>
+                                </div>
+                                <div class="col-4 col-sm-3 my-2">
+                                    <h6>Temperature</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-8 mt-5">
+                        <div class="hero-img position-relative circle-shape-images">
+                            <!--animated shape start-->
+                            <ul class="position-absolute animate-element parallax-element circle-shape-list">
+                                <li class="layer" data-depth="0.03">
+                                    <img src="{% static 'assets-frontend/img/shape/circle-1.svg' %}" alt="shape"
+                                        class="circle-shape-item type-0 hero-1">
+                                </li>
+                                <li class="layer" data-depth="0.02">
+                                    <img src="{% static 'assets-frontend/img/shape/circle-1.svg' %}" alt="shape"
+                                        class="circle-shape-item type-1 hero-1">
+                                </li>
+                                <li class="layer" data-depth="0.04">
+                                    <img src="{% static 'assets-frontend/img/shape/circle-1.svg' %}" alt="shape"
+                                        class="circle-shape-item type-2 hero-1">
+                                </li>
+                                <li class="layer" data-depth="0.04">
+                                    <img src="{% static 'assets-frontend/img/shape/circle-1.svg' %}" alt="shape"
+                                        class="circle-shape-item type-3 hero-1">
+                                </li>
+                                <li class="layer" data-depth="0.03">
+                                    <img src="{% static 'assets-frontend/img/shape/circle-1.svg' %}" alt="shape"
+                                        class="circle-shape-item type-4 hero-1">
+                                </li>
+                                <li class="layer" data-depth="0.03">
+                                    <img src="{% static 'assets-frontend/img/shape/circle-1.svg' %}" alt="shape"
+                                        class="circle-shape-item type-5 hero-1">
+                                </li>
+                            </ul>
+                            <!--animated shape end-->
+                            <img src="{% static 'assets-frontend/img/dyingearth-sensor.png' %}" alt="hero img"
+                                class="img-fluid position-relative z-5 sensor-main">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--hero section end-->
+
+        <!--feature promo section start-->
+        <section class="feature-promo ptb-120 bg-light-subtle">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-10">
+                        <div class="section-heading text-center">
+                            <h2>With all the Features You Need</h2>
+                            <p>Explore our user-friendly soil sensor system—simple, robust, and budget-friendly.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-feature-promo p-lg-5 p-4 text-center mt-3">
+                            <div class="feature-icon icon-center pb-5 rounded-custom bg-primary">
+                                <i class="fa-solid fa-droplet fa-2x text-white"></i>
+                            </div>
+                            <div class="feature-info-wrap">
+                                <h3 class="h5">Save Water</h3>
+                                <p>Prevent unnecessary watering by avoiding over-irrigation and irrigating judiciously.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-feature-promo p-lg-5 p-4 text-center mt-3">
+                            <div class="feature-icon icon-center pb-5 rounded-custom bg-danger">
+                                <i class="fa-solid fa-leaf fa-2x text-white"></i>
+                            </div>
+                            <div class="feature-info-wrap">
+                                <h3 class="h5">Increase Yield</h3>
+                                <p>Enhance crop development by adapting your irrigation practices to the varied
+                                    phenological stages of your plants</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-feature-promo p-lg-5 p-4 text-center mt-3">
+                            <div class="feature-icon icon-center pb-5 rounded-custom bg-dark">
+                                <i class="fa-regular fa-bell fa-2x text-white"></i>
+                            </div>
+                            <div class="feature-info-wrap">
+                                <h3 class="h5">Reduce Risk</h3>
+                                <p>Receive instant notifications for soil dryness or potential over-irrigation to stay
+                                    ahead of your crop's needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-feature-promo p-lg-5 p-4 text-center mt-3">
+                            <div class="feature-icon icon-center pb-5 rounded-custom bg-secondary bg-gradient">
+                                <i class="fa-regular fa-clock fa-2x text-white"></i>
+                            </div>
+                            <div class="feature-info-wrap">
+                                <h3 class="h5">Save Time</h3>
+                                <p>Say goodbye to manual soil checks and maintenance headaches with our efficient,
+                                    maintenance-free system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-lg-5 pt-3">
+                    <div class="col-lg-6 mt-4">
+                        <div
+                            class="position-relative d-flex flex-column h-100 flex-wrap bg-danger-soft p-5 rounded-custom">
+                            <div class="cta-left-info mb-2">
+                                <h5>Best sensors</h5>
+                                <p>Our top-notch sensors deliver accurate data backed by science. Monitor moisture,
+                                    humidity, and temperature with confidence.</p>
+                            </div>
+                            <div class="mt-auto">
+                                <a href="#pricing-section" class="btn btn-outline-primary btn-sm">Start For Free</a>
+                            </div>
+                            <div class="cta-img position-absolute right-0 bottom-0">
+                                <img src="{% static 'assets-frontend/img/quality.png' %}" alt="cta img" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-4">
+                        <div
+                            class="position-relative d-flex flex-column h-100 flex-wrap bg-primary-soft p-5 rounded-custom">
+                            <div class="cta-left-info mb-2">
+                                <h5>Gain real-time insights</h5>
+                                <p>Optimize decision processes seamlessly. Our system's unique automatic data analysis
+                                    delivers simple and actionable insights, minimizing the time spent on graph
+                                    analysis.</p>
+                            </div>
+                            <div class="mt-auto">
+                                <a href="#pricing-section" class="btn btn-outline-primary btn-sm">Start For Free</a>
+                            </div>
+                            <div class="cta-img position-absolute right-0 bottom-0">
+                                <img src="{% static 'assets-frontend/img/chart.png' %}" alt="cta img" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!--feature promo section end-->
+
+        <!--feature left right content start-->
+        <!--why choose us section start-->
+        <section class="why-choose-us ptb-120">
+            <div class="container">
+                <div class="row justify-content-lg-between align-items-center">
+                    <div class="col-lg-5 col-12">
+                        <div class="why-choose-content">
+                            <div class="icon-box rounded-custom bg-primary shadow-sm d-inline-block">
+                                <i class="fas fa-bug fa-2x text-white"></i>
+                            </div>
+                            <h2>Advanced Features </h2>
+                            <p>Premium soil moisture sensors, extensively tested wireless infrastructure, automatic data
+                                analysis, and an intuitive software platform.</p>
+                            <ul class="list-unstyled d-flex flex-wrap list-two-col mt-4 mb-4">
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Avoiding plant
+                                    stress</li>
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Saving water</li>
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Easy-to-use
+                                    software</li>
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Overview of
+                                    irrigation</li>
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Email
+                                    notifications</li>
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Air temperature
+                                    (beta feature)</li>
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Wireless LoRa
+                                    system</li>
+                                <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>Minimal
+                                    maintainence</li>
+                            </ul>
+                            <a href="{% url 'about-us'%}" class="read-more-link text-decoration-none">Know More About Us <i
+                                    class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="feature-img-holder mt-4 mt-lg-0 mt-xl-0">
+                            <img src="{% static 'assets-frontend/img/main widget.png' %}" class="img-fluid" alt="feature-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--why choose us section end-->
+
+        <!--image feature section start-->
+        <section class="image-feature pt-60 pb-120">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-5 col-12 order-lg-1">
+                        <div class="feature-img-content">
+                            <div class="icon-box rounded-custom bg-dark shadow-sm d-inline-block">
+                                <i class="fas fa-fingerprint fa-2x text-white"></i>
+                            </div>
+                            <h2>Straightforward analytics for effortless interpretation.</h2>
+                            <p>Our soil sensor analytics dashboard offers a user-friendly interface designed for easy
+                                interpretation and swift decision-making. Simplified graphics and clear-cut data
+                                visualization ensure that users can effortlessly understand and act upon crucial
+                                information about soil moisture, humidity, and temperature</p>
+                            <p>With a focus on simplicity, our dashboard provides streamlined analytics, making it an
+                                invaluable tool for efficient soil management.</p>
+
+                            <a href="{% url 'about-us'%}" class="read-more-link text-decoration-none d-block mt-4">Know More
+                                About
+                                Us <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 order-lg-0">
+                        <div class="feature-img-holder mt-4 mt-lg-0 mt-xl-0">
+                            <img src="{% static 'assets-frontend/img/main widget-1.png' %}" class="img-fluid" alt="feature-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--image feature section end--> <!--feature left right content end-->
+
+      
+        <!--our work process start-->
+        <section class="work-process ptb-120">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-10">
+                        <div class="section-heading text-center">
+                            <h4 class="h5 text-primary">Process</h4>
+                            <h2>Follow Our Installation Process</h2>
+                            <p>Explore our step-by-step installation guide for a seamless setup experience.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-5 col-md-12 order-1 order-lg-0">
+                        <div class="img-wrap">
+                            <img src="{% static 'assets-frontend/img/dyingearth-sensor.png' %}" alt="work process"
+                                class="img-fluid rounded-custom">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 order-0 order-lg-1">
+                        <ul class="work-process-list list-unstyled">
+                            <li class="d-flex align-items-start mb-4">
+                                <div class="process-icon-2 border border-2 rounded-custom bg-white me-4 mt-2">
+                                    <i class="fas fa-folder-tree fa-2x"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <span class="text-primary h6">Step 1</span>
+                                    <h3 class="h5 mb-2">Unpack and Get the Sensor Code</h3>
+                                    <p>Unpack the sensor package and locate the card featuring the QR code for the
+                                        sensor.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start mb-4">
+                                <div class="process-icon-2 border border-2 rounded-custom bg-white me-4 mt-2">
+                                    <i class="fas fa-bezier-curve fa-2x"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <span class="text-primary h6">Step 2</span>
+                                    <h3 class="h5 mb-2">Create an Account, Login and Register your Sensor</h3>
+                                    <p>Visit <a
+                                            href="https://www.dyingearth.com/signup/">https://www.dyingearth.com/signup/</a>
+                                        to create an account and login.</p>
+                                    <p>Go to Menu -> Add Sensor -> Add Sensor and register your sensor</p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start mb-4">
+                                <div class="process-icon-2 border border-2 rounded-custom bg-white me-4 mt-2">
+                                    <i class="fas fa-layer-group fa-2x"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <span class="text-primary h6">Step 3</span>
+                                    <h3 class="h5 mb-2">Install the Sensor</h3>
+                                    <p>Go to the plant you want to monitor and install the sensor on the plant <br> <b>4
+                                            - 7</b> inches above the ground.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start mb-4 mb-lg-0">
+                                <div class="process-icon-2 border border-2 rounded-custom bg-white me-4 mt-2">
+                                    <i class="fas fa-truck fa-2x"></i>
+                                </div>
+                                <div class="icon-content">
+                                    <span class="text-primary h6">Step 4</span>
+                                    <h3 class="h5 mb-2">Monitor Your Sensor</h3>
+                                    <p>Monitor your sensor with the Dying Earth Sensor App.
+                                        Visit <a
+                                            href="https://www.dyingearth.com/dashboard/">https://www.dyingearth.com/dashboard/</a>
+
+                                    <p><b><i>Watch your plant Grow healthily..........</i></b></p>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section> <!--our work process end-->
+
+        <!--pricing section start-->
+        <section class="pricing-section pt-60 pb-120  position-relative z-2" id="pricing-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-10">
+                        <div class="section-heading text-center">
+                            <h4 class="h5 text-primary">Pricing</h4>
+                            <h2>Check Our Valuable Price</h2>
+                            <p>Discover unbeatable value in our prices—quality without compromise. Find cost-effective
+                                solutions tailored to your needs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div
+                            class="position-relative single-pricing-wrap rounded-custom bg-white custom-shadow p-5 mb-4 mb-lg-0">
+                            <div class="pricing-header mb-32">
+                                <h3 class="package-name text-primary d-block">1 Sensor</h3>
+                                <h4 class="display-6 fw-semi-bold">$25<span>/month</span></h4>
+                            </div>
+                            <div class="pricing-info mb-4">
+                                <ul class="pricing-feature-list list-unstyled">
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>1 Sensor</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>24/7 Real-time Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Real-Time Feedback</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Moisture Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Humidity Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Temperature
+                                        Monitoring</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Real-time Alerts</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Weakly Reports</li>
+                                </ul>
+                            </div>
+                            <a href="{% url 'register' %}" class="btn btn-outline-primary mt-2">Buy Now</a>
+
+                            <!--pattern start-->
+                            <div class="dot-shape-bg position-absolute z--1 left--40 bottom--40">
+                                <img src="{% static 'assets-frontend/img/shape/dot-big-square.svg' %}" alt="shape">
+                            </div>
+                            <!--pattern end-->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div
+                            class="position-relative single-pricing-wrap rounded-custom bg-gradient text-white p-5 mb-4 mb-lg-0">
+                            <div class="pricing-header mb-32">
+                                <h3 class="package-name text-warning d-block">3 Sensors</h3>
+                                <h4 class="display-6 fw-semi-bold">$45<span>/month</span></h4>
+                            </div>
+                            <div class="pricing-info mb-4">
+                                <ul class="pricing-feature-list list-unstyled">
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>3 Sensor</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>24/7 Real-time Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Real-Time Feedback</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Moisture Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Humidity Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Temperature
+                                        Monitoring</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Real-time Alerts</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Weakly Reports</li>
+                                </ul>
+                            </div>
+                            <a href="{% url 'register' %}" class="btn btn-primary mt-2">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div
+                            class="position-relative single-pricing-wrap rounded-custom bg-white custom-shadow p-5 mb-4 mb-lg-0">
+                            <div class="pricing-header mb-32">
+                                <h3 class="package-name text-primary d-block">6 Sensors</h3>
+                                <h4 class="display-6 fw-semi-bold">$75<span>/month</span></h4>
+                            </div>
+                            <div class="pricing-info mb-4">
+                                <ul class="pricing-feature-list list-unstyled">
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>6 Sensor</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>24/7 Real-time Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Real-Time Feedback</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Moisture Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Humidity Monitoring
+                                    </li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Live Temperature
+                                        Monitoring</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Real-time Alerts</li>
+                                    <li><i class="fas fa-circle fa-2xs text-primary me-2"></i>Weakly Reports</li>
+                                </ul>
+                            </div>
+                            <a href="{% url 'register' %}" class="btn btn-outline-primary mt-2">Buy Now</a>
+
+                            <!--pattern start-->
+                            <div class="dot-shape-bg position-absolute z--1 right--40 top--40">
+                                <img src="{% static 'assets-frontend/img/shape/dot-big-square.svg' %}" alt="shape">
+                            </div>
+                            <!--pattern end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!--pricing section end-->
+  <!--customer review tab section start-->
+  <section class="customer-review-tab ptb-120 bg-gradient text-white  position-relative z-2">
+    <div class="container">
+        <div class="row justify-content-center align-content-center">
+            <div class="col-md-10 col-lg-6">
+                <div class="section-heading text-center">
+                    <h4 class="h5 text-warning text-primary">Testimonial</h4>
+                    <h2>What They Say About Us</h2>
+                    <p>Find out why people are raving about our products and services.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="tab-content" id="testimonial-tabContent">
+                    <div class="tab-pane fade active show" id="testimonial-tab-1" role="tabpanel">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="testimonial-tab-content mb-5 mb-lg-0 mb-md-0">
+                                    <img src="{% static 'assets-frontend/img/testimonial/quotes-left.svg' %}" alt="testimonial quote"
+                                        width="65" class="img-fluid mb-32">
+                                    <div class="blockquote-title-review mb-4">
+                                        <h3 class="mb-0 h4 fw-semi-bold">The Best Sensor in the Market</h3>
+                                        <ul class="review-rate mb-0 list-unstyled list-inline">
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <blockquote class="blockquote">
+                                        <p>Step into the future of sensing technology with our unrivaled sensor,
+                                            recognized as the epitome of excellence in the market. Packed with a
+                                            suite of features, including precise moisture measurement, accurate
+                                            temperature readings, and thorough humidity analysis,</p>
+                                        <p>
+                                            Our sensor stands as a testament to innovation and performance.
+                                            Embrace a new era of monitoring where reliability and sophistication
+                                            converge, providing you with unparalleled insights into your
+                                            environment. Make the smart choice – choose the sensor that sets the
+                                            standard for advanced and comprehensive data collection.
+                                        </p>
+                                    </blockquote>
+                                    <div class="author-info mt-4">
+                                        <h6 class="mb-0">Wisdom Egwim</h6>
+                                        <span>Software Developer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="author-img-wrap pt-5 ps-5">
+                                    <div class="testimonial-video-wrapper position-relative">
+                                        <img src="{% static 'assets-frontend/img/authors/Wisdom Egwim.jpg' %}"
+                                            class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
+                                        <div class="customer-info text-white d-flex align-items-center"></i>
+                                        </div>
+                                        <div
+                                            class="position-absolute bg-primary-dark z--1 dot-mask dm-size-16 dm-wh-350 top--40 left--40 top-left">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="testimonial-tab-2" role="tabpanel">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="testimonial-tab-content mb-5 mb-lg-0 mb-md-0">
+                                    <img src="{% static 'assets-frontend/img/testimonial/quotes-left.svg' %}" alt="testimonial quote"
+                                        width="65" class="img-fluid mb-32">
+                                    <div class="blockquote-title-review mb-4">
+                                        <h3 class="mb-0 h4 fw-semi-bold">Embarrassed by the First Version.</h3>
+                                        <ul class="review-rate mb-0 list-unstyled list-inline">
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>Experience the pinnacle of sensing technology with our market-leading
+                                            sensor, meticulously crafted to redefine industry standards. This
+                                            exceptional device is distinguished by its advanced features,
+                                            seamlessly integrating precise moisture measurement, temperature
+                                            accuracy, and comprehensive humidity analysis.</p>
+                                        <p> Elevate your monitoring capabilities and stay ahead of the curve
+                                            with a sensor that not only promises innovation but delivers
+                                            unmatched performance. Choose reliability, choose sophistication,
+                                            choose the future of sensing technology with our unparalleled sensor
+                                            – the epitome of excellence in the market.
+                                        </p>
+                                    </blockquote>
+                                    <div class="author-info mt-4">
+                                        <h6 class="mb-0">Jan Tobias</h6>
+                                        <span>Product Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="author-img-wrap pt-5 ps-5">
+                                    <div class="testimonial-video-wrapper position-relative">
+                                        <img src="{% static 'assets-frontend/img/authors/janto.jpeg' %}"
+                                            class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
+                                        <div class="customer-info text-white d-flex align-items-center">
+                                        </div>
+                                        <div
+                                            class="position-absolute bg-primary-dark z--1 dot-mask dm-size-16 dm-wh-350 top--40 left--40 top-left">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="testimonial-tab-3" role="tabpanel">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="testimonial-tab-content mb-5 mb-lg-0 mb-md-0">
+                                    <img src="{% static 'assets-frontend/img/testimonial/quotes-left.svg' %}" alt="testimonial quote"
+                                        width="65" class="img-fluid mb-32">
+                                    <div class="blockquote-title-review mb-4">
+                                        <h3 class="mb-0 h4 fw-semi-bold">Amazing sensor</h3>
+                                        <ul class="review-rate mb-0 list-unstyled list-inline">
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>
+                                            Appropriately negotiate interactive niches rather orchestrate
+                                            scalable
+                                            benefits whereas flexible systems. Objectively grow quality
+                                            outsourcing
+                                            without vertical methods of empowerment. Assertively negotiate just
+                                            in time innovation after client-centered thinking.
+                                        </p>
+                                    </blockquote>
+                                    <div class="author-info mt-4">
+                                        <h6 class="mb-0">Jon Doe</h6>
+                                        <span>Software Engineer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="author-img-wrap pt-5 ps-5">
+                                    <div class="testimonial-video-wrapper position-relative">
+                                        <img src="{% static 'assets-frontend/img/testimonial/t-3.jpg' %}"
+                                            class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
+                                        <div class="customer-info text-white d-flex align-items-center">
+                                        </div>
+                                        <div
+                                            class="position-absolute bg-primary-dark z--1 dot-mask dm-size-16 dm-wh-350 top--40 left--40 top-left">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="testimonial-tab-4" role="tabpanel">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="testimonial-tab-content mb-5 mb-lg-0 mb-md-0">
+                                    <img src="{% static 'assets-frontend/img/testimonial/quotes-left.svg' %}" alt="testimonial quote"
+                                        width="65" class="img-fluid mb-32">
+                                    <div class="blockquote-title-review mb-4">
+                                        <h3 class="mb-0 h4 fw-semi-bold">Best Template for SAAS Company!</h3>
+                                        <ul class="review-rate mb-0 list-unstyled list-inline">
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>Competently repurpose cost effective strategic theme areas and
+                                            customer
+                                            directed meta-services. Objectively orchestrate orthogonal
+                                            initiatives
+                                            after enterprise-wide bandwidth. Dynamically generate extensive
+                                            through cooperative channels time partnerships. </p>
+                                    </blockquote>
+                                    <div class="author-info mt-4">
+                                        <h6 class="mb-0">Hanry Luice</h6>
+                                        <span>App Developer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="author-img-wrap pt-5 ps-5">
+                                    <div class="testimonial-video-wrapper position-relative">
+                                        <img src="{% static 'assets-frontend/img/testimonial/t-4.jpg' %}"
+                                            class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
+                                        <div class="customer-info text-white d-flex align-items-center">
+                                        </div>
+                                        <div
+                                            class="position-absolute bg-primary-dark z--1 dot-mask dm-size-16 dm-wh-350 top--40 left--40 top-left">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="testimonial-tab-5" role="tabpanel">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="testimonial-tab-content mb-5 mb-lg-0 mb-md-0">
+                                    <img src="{% static 'ssets-frontend/img/testimonial/quotes-left.svg' %}" alt="testimonial quote"
+                                        width="65" class="img-fluid mb-32">
+                                    <div class="blockquote-title-review mb-4">
+                                        <h3 class="mb-0 h4 fw-semi-bold">It is Undeniably Good!</h3>
+                                        <ul class="review-rate mb-0 list-unstyled list-inline">
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                            <li class="list-inline-item"><i
+                                                    class="fas fa-star text-warning"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>Appropriately disintermediate one-to-one vortals through cross
+                                            functional
+                                            infomediaries. Collaboratively pursue multidisciplinary systems
+                                            through
+                                            stand-alone architectures. Progressively transition covalent
+                                            architectures whereas vertical applications procrastinate
+                                            professional.</p>
+                                    </blockquote>
+                                    <div class="author-info mt-4">
+                                        <h6 class="mb-0">Ami Nijai</h6>
+                                        <span>Customer Support</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="author-img-wrap pt-5 ps-5">
+                                    <div class="testimonial-video-wrapper position-relative">
+                                        <img src="{% static 'assets-frontend/img/testimonial/t-5.jpg' %}"
+                                            class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
+                                        <div class="customer-info text-white d-flex align-items-center">
+                                        </div>
+                                        <div
+                                            class="position-absolute bg-primary-dark z--1 dot-mask dm-size-16 dm-wh-350 top--40 left--40 top-left">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-pills testimonial-tab-menu mt-60" id="testimonial" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-link d-flex align-items-center rounded-custom border border-light border-2 testimonial-tab-link active"
+                            data-bs-toggle="pill" data-bs-target="#testimonial-tab-1" role="tab"
+                            aria-selected="false">
+                            <div class="testimonial-thumb me-3">
+                                <img src="{% static 'assets-frontend/img/authors/Wisdom Egwim avater.jpg' %}" width="50"
+                                    class="rounded-circle" alt="testimonial thumb">
+                            </div>
+                            <div class="author-info">
+                                <h6 class="mb-0">Wisdom Egwim</h6>
+                                <span>Software Developer</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-link d-flex align-items-center rounded-custom border border-light border-2 testimonial-tab-link"
+                            data-bs-toggle="pill" data-bs-target="#testimonial-tab-2" role="tab"
+                            aria-selected="false">
+                            <div class="testimonial-thumb me-3">
+                                <img src="{% static 'assets-frontend/img/authors/janto avater.jpeg' %}" width="50"
+                                    class="rounded-circle" alt="testimonial thumb">
+                            </div>
+                            <div class="author-info">
+                                <h6 class="mb-0">Jan Tobias</h6>
+                                <span>Product Manager</span>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-link d-flex align-items-center rounded-custom border border-light border-2 testimonial-tab-link"
+                            data-bs-toggle="pill" data-bs-target="#testimonial-tab-3" role="tab"
+                            aria-selected="false">
+                            <div class="testimonial-thumb me-3">
+                                <img src="{% static 'assets-frontend/img/testimonial/3.jpg' %}" width="50" class="rounded-circle"
+                                    alt="testimonial thumb">
+                            </div>
+                            <div class="author-info">
+                                <h6 class="mb-0">Jon Doe</h6>
+                                <span>Software Engineer</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-link d-flex align-items-center rounded-custom border border-light border-2 testimonial-tab-link"
+                            data-bs-toggle="pill" data-bs-target="#testimonial-tab-4" role="tab"
+                            aria-selected="false">
+                            <div class="testimonial-thumb me-3">
+                                <img src="{% static 'assets-frontend/img/testimonial/4.jpg' %}" width="50" class="rounded-circle"
+                                    alt="testimonial thumb">
+                            </div>
+                            <div class="author-info">
+                                <h6 class="mb-0">Hanry Luice</h6>
+                                <span>App Developer</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-link d-flex align-items-center rounded-custom border border-light border-2 testimonial-tab-link"
+                            data-bs-toggle="pill" data-bs-target="#testimonial-tab-5" role="tab"
+                            aria-selected="true">
+                            <div class="testimonial-thumb me-3">
+                                <img src="{% static 'assets-frontend/img/testimonial/5.jpg' %}" width="50" class="rounded-circle"
+                                    alt="testimonial thumb">
+                            </div>
+                            <div class="author-info">
+                                <h6 class="mb-0">Ami Nijai</h6>
+                                <span>Customer Support</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section> <!--customer review tab section end-->
+
+        <!--faq section start-->
+        <section class="faq-section ptb-120 bg-light-subtle">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-6">
+                        <div class="section-heading text-center">
+                            <h4 class="h5 text-primary">FAQ</h4>
+                            <h2>Frequently Asked Questions</h2>
+                            <p>Conveniently mesh cooperative services via magnetic outsourcing. Dynamically grow value
+                                whereas accurate e-commerce vectors. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-5 col-12">
+                        <div class="faq-wrapper">
+                            <div class="faq-item mb-5">
+                                <h5><span class="h3 text-primary me-2">1.</span> How does back pricing work?</h5>
+                                <p>Progressively e-enable collaborative inexpensive supply chains. Efficiently maintain
+                                    economically methods of empowerment for synergistic sound scenarios.</p>
+                            </div>
+                            <div class="faq-item mb-5">
+                                <h5><span class="h3 text-primary me-2">2.</span> How do I calculate how much price?</h5>
+                                <p>Globally benchmark customized mindshare before clicks-and-mortar partnerships.
+                                    Efficiently maintain economically sound scenarios and whereas client-based
+                                    progressively. </p>
+                            </div>
+                            <div class="faq-item">
+                                <h5><span class="h3 text-primary me-2">3.</span> Can you show me an example?</h5>
+                                <p> Dynamically visualize whereas competitive relationships. Progressively benchmark
+                                    customized partnerships generate interdependent benefits rather sound scenarios and
+                                    robust alignments.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="text-center mt-4 mt-lg-0 mt-md-0">
+                            <img src="{% static 'assets-frontend/img/faq.svg' %}" alt="faq" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!--faq section end-->
+
+        <!--footer section start-->
+        <footer class="footer-section">
+            <!--footer top start-->
+            <!--for light footer add .footer-light class and for dark footer add .bg-dark .text-white class-->
+            <div class="footer-top  bg-gradient text-white ptb-120"
+                style="background: url('assets-frontend/img/page-header-bg.svg')no-repeat bottom right">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-md-8 col-lg-4 mb-md-4 mb-lg-0">
+                            <div class="footer-single-col">
+                                <div class="footer-single-col mb-4">
+                                    <img src="{% static 'assets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid logo-white">
+                                    <img src="{% static 'ssets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid logo-color">
+                                </div>
+                                <p>Empower your farm with the intelligence of advanced soil sensors.</p>
+                                <div class="ratting-wrap mt-4">
+                                    <h6 class="mb-0">10/10 Overall rating</h6>
+                                    <ul class="list-unstyled rating-list list-inline mb-0">
+                                        <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-7 mt-4 mt-md-0 mt-lg-0">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 m-auto mt-4 mt-md-0 mt-lg-0">
+                                    <div class="footer-single-col">
+                                        <h3>Primary Pages</h3>
+                                        <ul class="list-unstyled footer-nav-list mb-lg-0">
+                                            <li><a href="{% url 'index'%}" class="text-decoration-none">Home</a></li>
+                                            <li><a href="{% url 'about-us'%}" class="text-decoration-none">About Us</a></li>
+                                            <li><a href="{% url 'contact-us'%}" class="text-decoration-none">Contect Us</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--footer top end-->
+
+            <!--footer bottom start-->
+            <div class="footer-bottom  bg-gradient text-white py-4">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-md-7 col-lg-7">
+                            <div class="copyright-text">
+                                <p class="mb-lg-0 mb-md-0">&copy; 2023 Dyingearth Rights Reserved. Designed By <a
+                                        href="https://egwimcodes.dev/" class="text-decoration-none">Egwim Codes</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="footer-single-col text-start text-lg-end text-md-end">
+                                <ul class="list-unstyled list-inline footer-social-list mb-0">
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-github"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--footer bottom end-->
+        </footer>
+        <!--footer section end--> <!--footer section end-->
+
+    </div>
+
+
+
+    <!--build:js-->
+    <script src="{% static 'assets-frontend/js/vendors/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets-frontend/js/vendors/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets-frontend/js/vendors/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets-frontend/js/vendors/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets-frontend/js/vendors/parallax.min.js' %}"></script>
+    <script src="{% static 'assets-frontend/js/vendors/aos.js' %}"></script>
+    <script src="{% static 'assets-frontend/js/vendors/massonry.min.js' %}"></script>
+    <script src="{% static 'assets-frontend/js/app.js' %}"></script>
+    <!--endbuild-->
+</body>
+
+</html>

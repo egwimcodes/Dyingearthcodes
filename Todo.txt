@@ -1,3 +1,0 @@
-1, change the icon of the profile page 
-2, work on the authentication system
-3, work on the statistics 

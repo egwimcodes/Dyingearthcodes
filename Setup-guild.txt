@@ -1,0 +1,44 @@
+###########################   Basic setup ---->
+
+## First go to .env file and replace the values with your database details
+## Optional you can use your email details to replace mine
+
+## To verify if the database is connected run 
+$ python manage.py dbshell
+##If your database settings are correct, this command should open a command-line interface to your ##PostgreSQL database. You can then run SQL queries directly in the terminal.
+
+
+## Activating the virtual environment:
+$ env/Scripts/activate
+
+
+## installing the dependencies 
+$ pip install -r requirements.txt
+
+
+## Making migrations and migrating
+$ python manage.py makemigrations 
+$ python manage.py migrate
+
+
+## Creating a superuser (the admin user)
+$ python manage.py createsuperuser
+## Enter your credentials 
+
+
+## You can now startUp the server 
+$ python manage.py runserver
+
+
+
+
+###########################   Setup for Tasks ----> 
+#
+##
+### Starting Celery server
+$ celery -A dyingearthcode worker --pool=solo -l INFO
+
+### Starting a beat server **Note:: Make sure you have beat installed and running
+celery -A dyingearthcode beat -l INFO
+
+

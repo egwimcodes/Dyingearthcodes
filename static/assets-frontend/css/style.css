@@ -9,6 +9,7 @@ body {
   background-size: cover;
   position: relative;
   width: 100%;
+  visibility: hidden;
 }
 
 body::before {
@@ -23,7 +24,7 @@ body::before {
 
 @media (min-width: 1024px) {
   body {
-    background-attachment: fixed;
+    background-attachment: inherit;
   }
 }
 

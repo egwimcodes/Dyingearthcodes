@@ -8,6 +8,7 @@ body {
   background: url("../img/bg.jpg") top center no-repeat;
   background-size: cover;
   position: relative;
+  width: 100%;
 }
 
 body::before {

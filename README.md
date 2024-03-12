@@ -21,7 +21,7 @@
 
 ## Project Overview
 
-The **Dyingearth** Soil Sensor Project stands as a testament to my dedication to merging technology with practical solutions. In this Python-based initiative, I endeavored to create a sophisticated system capable of tracking crucial soil parameters: humidity, temperature, and moisture content. This project was born out of a recognition of the pivotal role these factors play in agriculture and environmental monitoring.. [dyingearth.com](https://dyingearth.com).
+The **Dyingearth** Soil Sensor Project stands as a testament to my dedication to merging technology with practical solutions. In this Python-based initiative, I endeavored to create a sophisticated system capable of tracking crucial soil parameters: humidity, temperature, and moisture content. This project was born out of a recognition of the pivotal role these factors play in agriculture and environmental monitoring.. [dyingearth.com]([https://dyingearthcodes.onrender.com](https://dyingearthcodes.onrender.com)).
 
 
 ## Preview 
@@ -29,7 +29,7 @@ The **Dyingearth** Soil Sensor Project stands as a testament to my dedication to
 
 ## Live demo
 
-Check the live demo here 👉️ [https://dyingearth.com](https://dyingearth.com)
+Check the live demo here 👉️ ([https://dyingearthcodes.onrender.com](https://dyingearthcodes.onrender.com))
 
 ## Getting Started
 
@@ -129,5 +129,5 @@ With these steps, you should have the Dyingearth Soil Sensor Project up and runn
 Open [http://localhost:9000](http://localhost:9000) with your browser to see the result.
 
 ## About Me
-
+@Egwimcodes ([https://egwimcodes.dev](https://egwimcodes.dev))
 Wisdom Egwim is a highly skilled, ambitious Software Developer with a robust background in Python, Django, FastApi, Flutter, Dart, Javascript, ReactJS, NextJS, Css, Tailwindcss, and Bootstrap. My expertise extends beyond conventional boundaries, encompassing a profound understanding of ML and Robotics.

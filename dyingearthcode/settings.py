@@ -159,7 +159,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'client_id': '885179060506-sl9sm6f3odopn768gq94uvcjsfnjuae9.apps.googleusercontent.com',
             'secret': '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',
             'key': '',
-            'sites': ['localhost:9000']
+            'sites': ['localhost:8000', 'dyingearthcodes.onrender.com']
         },
         "SCOPE": [
             "profile",

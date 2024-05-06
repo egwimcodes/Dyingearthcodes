@@ -92,15 +92,15 @@
                                 data-bs-title="Light"><i class="flaticon-sun-1 fs-lg"></i></div>
                             <div class="tt-theme-dark" data-bs-toggle="tooltip" data-bs-placement="left"
                                 data-bs-title="Dark"><i class="flaticon-moon-1 fs-lg"></i></div>
-                        </a> <a href="login.html" class="btn btn-link text-decoration-none me-2">Sign In</a>
-                        <a href="request-demo.html" class="btn btn-primary">Get Started</a>
+                        </a> <a href="{% url 'login' %}" class="btn btn-link text-decoration-none me-2">Sign In</a>
+                        <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
                     </div>
                 </div>
             </nav>
             <!--offcanvas menu start-->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasWithBackdrop">
                 <div class="offcanvas-header d-flex align-items-center mt-4">
-                    <a href="index-2.html" class="d-flex align-items-center mb-md-0 text-decoration-none">
+                    <a href="/" class="d-flex align-items-center mb-md-0 text-decoration-none">
                         <img src="{% static 'assets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid ps-2" />
                     </a>
                     <button type="button" class="close-btn text-danger" data-bs-dismiss="offcanvas" aria-label="Close">
@@ -114,8 +114,8 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'contact-us'%}">Contact Us</a></li>
                     </ul>
                     <div class="action-btns mt-4 ps-3">
-                        <a href="login.html" class="btn btn-outline-primary me-2">Sign In</a>
-                        <a href="request-demo.html" class="btn btn-primary">Get Started</a>
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Sign In</a>
+                        <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
 
         <!--page header section start-->
         <section class="page-header position-relative overflow-hidden ptb-120 bg-dark"
-            style="background: url('assets/img/page-header-bg.svg')no-repeat bottom left">
+            >
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 mt-5">
@@ -188,7 +188,7 @@
 
         <!--contact us form start-->
         <section class="contact-us-form pt-60 pb-120"
-            style="background: url('assets/img/shape/contact-us-bg.svg')no-repeat center bottom">
+            style="background: no-repeat center bottom">
             <div class="container">
                 <div class="row justify-content-lg-between align-items-center">
                     <div class="col-lg-6 col-md-8">
@@ -263,7 +263,7 @@
                             <div class="footer-single-col">
                                 <div class="footer-single-col mb-4">
                                     <img src="{% static 'assets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid logo-white">
-                                    <img src="{% static 'ssets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid logo-color">
+                                    <img src="{% static 'assets-frontend/img/logo-img.png' %}" alt="logo" class="img-fluid logo-color">
                                 </div>
                                 <p>Empower your farm with the intelligence of advanced soil sensors.</p>
                                 <div class="ratting-wrap mt-4">

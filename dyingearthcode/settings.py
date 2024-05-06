@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY','')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 SITE_ID = 1
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
@@ -221,7 +221,7 @@ MEDIA_URL = '/images/'
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 # ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static', )
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = BASE_DIR / "static/images/"
 

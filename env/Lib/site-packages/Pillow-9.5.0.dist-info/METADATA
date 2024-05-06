@@ -14,6 +14,7 @@ Project-URL: Changelog, https://github.com/python-pillow/Pillow/blob/main/CHANGE
 Project-URL: Twitter, https://twitter.com/PythonPillow
 Project-URL: Mastodon, https://fosstodon.org/@pillow
 Keywords: Imaging
+Platform: UNKNOWN
 Classifier: Development Status :: 6 - Mature
 Classifier: License :: OSI Approved :: Historical Permission Notice and Disclaimer (HPND)
 Classifier: Programming Language :: Python :: 3
@@ -32,7 +33,6 @@ Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
 Classifier: Topic :: Multimedia :: Graphics :: Viewers
 Requires-Python: >=3.7
 Description-Content-Type: text/markdown
-License-File: LICENSE
 Provides-Extra: docs
 Requires-Dist: furo ; extra == 'docs'
 Requires-Dist: olefile ; extra == 'docs'
@@ -174,3 +174,5 @@ The core image library is designed for fast access to data stored in a few basic
 ## Report a Vulnerability
 
 To report a security vulnerability, please follow the procedure described in the [Tidelift security policy](https://tidelift.com/docs/security).
+
+

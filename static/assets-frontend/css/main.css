@@ -9,6 +9,10 @@
   --swiper-theme-color: #007aff;
 }
 
+body, html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
@@ -53365,5 +53369,4 @@ span.mk-subtitle {
 .w-95{
   width: 95% !important;
 }
-/*# sourceMappingURL=scss */
-/*# sourceMappingURL=main.css.map */
+

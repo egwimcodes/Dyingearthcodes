@@ -3708,7 +3708,7 @@ body{
 .bg-login {
 
 
-	background-image: url(../images/login-images/bg-login-img.jpg);
+	background-image: url("../images/login-images/bg-login-img.cfaeb5fe0e6e.jpg");
 
 
 	background-size: cover;
@@ -3729,7 +3729,7 @@ body{
 .bg-forgot {
 
 
-	background-image: url(../images/login-images/bg-forgot-password.jpg);
+	background-image: url("../images/login-images/bg-forgot-password.a2726d8c585d.jpg");
 
 
 	background-size: cover;
@@ -3750,7 +3750,7 @@ body{
 .bg-lock-screen {
 
 
-	background-image: url(../images/login-images/bg-lock-screen.jpg);
+	background-image: url("../images/login-images/bg-lock-screen.8a15ba468c27.jpg");
 
 
 	background-size: cover;

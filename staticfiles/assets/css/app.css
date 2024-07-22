@@ -62,14 +62,8 @@ a {
 
 
 .wrapper {
-
-
-	width: 100%;
-
-
+	width: 100vw;
 	position: relative;
-
-
 }
 
 .mobile-topbar-header {

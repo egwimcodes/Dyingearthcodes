@@ -8,6 +8,15 @@
 :root {
   --swiper-theme-color: #007aff;
 }
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
 .swiper {
   margin-left: auto;
   margin-right: auto;
@@ -53353,5 +53362,8 @@ span.mk-subtitle {
   }
 }
 
+.w-95{
+  width: 95% !important;
+}
 /*# sourceMappingURL=scss */
 /*# sourceMappingURL=main.css.map */
